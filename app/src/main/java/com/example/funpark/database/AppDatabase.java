@@ -10,10 +10,11 @@ import androidx.room.*;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.funpark.database.dao.TicketTypeDao;
+import com.example.funpark.database.entity.TicketTypeEntity;
 
 import java.util.concurrent.Executors;
 
-@Database(entities = {}, version = 1)
+@Database(entities = {TicketTypeEntity.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String TAG = "AppDatabase";
@@ -58,6 +59,17 @@ public abstract class AppDatabase extends RoomDatabase {
                         });
                     }
                 }).build();
+    }
+
+    public static void initializeDemoData(final AppDatabase database) {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            database.runInTransaction(() -> {
+                Log.i(TAG, "Wipe database.");
+                database.ticketTypeDao().deleteAll();
+
+                DatabaseInitializer.populateDatabase(database);
+            });
+        });
     }
 
     /**
