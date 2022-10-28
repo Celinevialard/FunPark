@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FunPark</string>
+    <string name="mainActivity_Button_Admin">Admin</string>
+    <string name="mainActivity_Button_Visitor">Visitor</string>
 </resources>
