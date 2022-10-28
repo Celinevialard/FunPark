@@ -9,6 +9,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.room.*;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.funpark.database.dao.TicketTypeDao;
+
 import java.util.concurrent.Executors;
 
 @Database(entities = {}, version = 1)
@@ -20,7 +22,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static final String DATABASE_NAME = "funpark-database";
 
-    //public abstract ClientDao clientDao();
+    public abstract TicketTypeDao ticketTypeDao();
 
     private final MutableLiveData<Boolean> isDatabaseCreated = new MutableLiveData<>();
 
