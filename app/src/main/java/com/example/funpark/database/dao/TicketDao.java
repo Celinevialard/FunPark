@@ -1,5 +1,7 @@
 package com.example.funpark.database.dao;
 
+import android.database.sqlite.SQLiteConstraintException;
+
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -24,7 +26,7 @@ public interface TicketDao {
     void deleteAll();
 
     @Insert
-    long insert(TicketEntity ticket);
+    long insert(TicketEntity ticket) throws SQLiteConstraintException;
 
     @Delete
     void delete(TicketEntity ticket);

@@ -32,7 +32,7 @@ public class VisitorListViewModel extends AndroidViewModel {
 
         this.application = application;
 
-        repository = repository;
+        this.repository = repository;
 
         observableVisitors = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
