@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_tickets"
+            android:icon="@android:drawable/ic_dialog_dialer"
+            android:title="@string/title_activity_tickets" />
+        <item
+            android:id="@+id/nav_visitor"
+            android:icon="@android:drawable/arrow_up_float"
+            android:title="@string/title_activity_visitor" />
+
+        <item
+            android:id="@+id/nav_none"
+            android:title=""
+            android:visible="false"/>
+    </group>
+
+</menu>
