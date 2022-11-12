@@ -3,13 +3,13 @@ package com.example.funpark.database.entity;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
 
-@Entity(tableName = "tickets",primaryKeys = {"id"})
+@Entity(tableName = "tickets", primaryKeys = {"id"})
 public class TicketEntity {
 
     @NonNull
     private int id;
+
     private String ticketName;
     private double price;
     private int duration;
@@ -19,7 +19,8 @@ public class TicketEntity {
     public TicketEntity() {
     }
 
-    public TicketEntity(@NonNull int id, String ticketName, double price, int duration, int ticketType) {
+    public TicketEntity(int id, String ticketName, double price, int duration, int ticketType) {
+        this.id = id;
         this.ticketName = ticketName;
         this.price = price;
         this.duration = duration;

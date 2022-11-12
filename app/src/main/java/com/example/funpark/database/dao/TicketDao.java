@@ -2,9 +2,15 @@ package com.example.funpark.database.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.funpark.database.entity.TicketEntity;
+
+import java.util.List;
+
 @Dao
 public interface TicketDao {
 
@@ -12,15 +18,19 @@ public interface TicketDao {
     LiveData<TicketEntity> getById(int id);
 
     @Query("SELECT * FROM tickets")
-    LiveData<TicketEntity> getAll();
+    LiveData<List<TicketEntity>> getAll();
 
     @Query("DELETE FROM tickets")
     void deleteAll();
 
-    /**
-    //Return all tickets from a ticketType
-    @Query("SELECT * FROM tickets,tickettypes WHERE tickettypes.id = tickets.ticketType ")
-    void getTicketsForATicketType();
-    **/
+    @Insert
+    long insert(TicketEntity ticket);
+
+    @Delete
+    void delete(TicketEntity ticket);
+
+    @Update
+    void update(TicketEntity ticket);
+    
 }
 
