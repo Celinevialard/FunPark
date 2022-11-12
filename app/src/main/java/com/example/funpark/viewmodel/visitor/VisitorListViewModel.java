@@ -78,7 +78,7 @@ public class VisitorListViewModel extends AndroidViewModel {
     /**
      * Expose the LiveData AccountEntities query so the UI can observe it.
      */
-    public void deleteAccount(VisitorEntity visitor, OnAsyncEventListener callback) {
+    public void deleteVisitor(VisitorEntity visitor, OnAsyncEventListener callback) {
         repository.delete(visitor, callback, application);
     }
 
