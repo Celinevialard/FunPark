@@ -2,16 +2,24 @@ package com.example.funpark.database.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 
-@Entity(tableName = "tickets", primaryKeys = {"id"})
+@Entity(tableName = "tickets", primaryKeys = {"id"}, foreignKeys =
+    @ForeignKey(
+            entity = TicketTypeEntity.class,
+            parentColumns = "id",
+            childColumns = "ticketType",
+            onDelete = ForeignKey.CASCADE
+    ))
 public class TicketEntity {
 
     @NonNull
     private int id;
 
     private String ticketName;
-    private double price;
+    private double priceSummer;
+    private double priceWinter;
     private int duration;
     private int ticketType;
 
@@ -19,10 +27,11 @@ public class TicketEntity {
     public TicketEntity() {
     }
 
-    public TicketEntity(int id, String ticketName, double price, int duration, int ticketType) {
+    public TicketEntity(@NonNull int id, String ticketName, double priceSummer, double priceWinter, int duration, int ticketType) {
         this.id = id;
         this.ticketName = ticketName;
-        this.price = price;
+        this.priceSummer = priceSummer;
+        this.priceWinter = priceWinter;
         this.duration = duration;
         this.ticketType = ticketType;
     }
@@ -43,12 +52,20 @@ public class TicketEntity {
         this.ticketName = ticketName;
     }
 
-    public double getPrice() {
-        return price;
+    public double getPriceSummer() {
+        return priceSummer;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPriceSummer(double priceSummer) {
+        this.priceSummer = priceSummer;
+    }
+
+    public double getPriceWinter() {
+        return priceWinter;
+    }
+
+    public void setPriceWinter(double priceWinter) {
+        this.priceWinter = priceWinter;
     }
 
     public int getDuration() {

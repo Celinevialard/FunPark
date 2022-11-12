@@ -59,7 +59,7 @@ public abstract class AppDatabase extends RoomDatabase {
                         super.onCreate(db);
                         Executors.newSingleThreadExecutor().execute(() -> {
                             AppDatabase database = AppDatabase.getInstance(appContext);
-                            DatabaseInitializer.populateDatabase(database);
+                            initializeDemoData(database);
                             // notify that the database was created and it's ready to be used
                             database.setDatabaseCreated();
                         });
@@ -71,8 +71,11 @@ public abstract class AppDatabase extends RoomDatabase {
         Executors.newSingleThreadExecutor().execute(() -> {
             database.runInTransaction(() -> {
                 Log.i(TAG, "Wipe database.");
+                //Delete les visiteurs avant le ticket type
+                database.visitorDao().deleteAll();
                 database.ticketTypeDao().deleteAll();
-
+                //Hardcoder le delete ticket mais expliquer qu'il sera supprimer avec deletecascade dans tickettype
+                database.ticketDao().deleteAll();
                 DatabaseInitializer.populateDatabase(database);
             });
         });

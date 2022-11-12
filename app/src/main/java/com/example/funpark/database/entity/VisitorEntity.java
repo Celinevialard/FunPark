@@ -2,11 +2,21 @@ package com.example.funpark.database.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Ignore;
+import androidx.room.TypeConverters;
+
+import com.example.funpark.util.DateConverter;
 
 import java.util.Date;
 
-@Entity(tableName = "visitors", primaryKeys = {"id"})
+@Entity(tableName = "visitors", primaryKeys = {"id"}, foreignKeys =
+    @ForeignKey(
+            entity = TicketTypeEntity.class,
+            parentColumns = "id",
+            childColumns = "ticketType"
+    ))
+@TypeConverters(DateConverter.class)
 public class VisitorEntity {
 
     @NonNull

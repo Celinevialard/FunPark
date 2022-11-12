@@ -2,8 +2,10 @@ package com.example.funpark.database.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Insert;
 import androidx.room.Query;
 
+import com.example.funpark.database.entity.TicketEntity;
 import com.example.funpark.database.entity.TicketTypeEntity;
 @Dao
 public interface TicketTypeDao {
@@ -16,4 +18,7 @@ public interface TicketTypeDao {
 
     @Query("DELETE FROM tickettypes")
     void deleteAll();
+
+    @Insert
+    long insert(TicketTypeEntity ticketType);
 }
