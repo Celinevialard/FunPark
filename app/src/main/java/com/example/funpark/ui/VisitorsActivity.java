@@ -1,17 +1,5 @@
 package com.example.funpark.ui;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.lifecycle.ViewModelStore;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,14 +8,21 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.view.GravityCompat;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStore;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.funpark.R;
 import com.example.funpark.adapter.RecyclerAdapter;
-import com.example.funpark.database.entity.TicketEntity;
 import com.example.funpark.database.entity.VisitorEntity;
 import com.example.funpark.util.OnAsyncEventListener;
 import com.example.funpark.util.RecyclerViewItemClickListener;
 import com.example.funpark.viewmodel.visitor.VisitorListViewModel;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,7 +102,7 @@ public class VisitorsActivity extends BaseActivity {
 */
         VisitorListViewModel.Factory factory = new VisitorListViewModel.Factory(
                 getApplication());
-        viewModel = new ViewModelProvider(new ViewModelStore(),(ViewModelProvider.Factory) factory).get(VisitorListViewModel.class);
+        viewModel = new ViewModelProvider(new ViewModelStore(), (ViewModelProvider.Factory) factory).get(VisitorListViewModel.class);
         viewModel.getVisitors().observe(this, accountEntities -> {
             if (accountEntities != null) {
                 visitors = accountEntities;

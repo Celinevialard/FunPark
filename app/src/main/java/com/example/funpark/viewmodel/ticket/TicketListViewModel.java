@@ -13,7 +13,6 @@ import com.example.funpark.BaseApp;
 import com.example.funpark.database.entity.TicketEntity;
 import com.example.funpark.database.repository.TicketRepository;
 import com.example.funpark.util.OnAsyncEventListener;
-import com.example.funpark.viewmodel.visitor.VisitorListViewModel;
 
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class TicketListViewModel extends AndroidViewModel {
     private final MediatorLiveData<List<TicketEntity>> observableTickets;
 
     public TicketListViewModel(@NonNull Application application,
-                                TicketRepository ticketRepository) {
+                               TicketRepository ticketRepository) {
         super(application);
 
         this.application = application;
@@ -43,7 +42,7 @@ public class TicketListViewModel extends AndroidViewModel {
 
         // observe the changes of the entities from the database and forward them
         observableTickets.addSource(tickets, observableTickets::setValue);
-  }
+    }
 
     /**
      * A creator is used to inject the account id into the ViewModel
@@ -61,7 +60,7 @@ public class TicketListViewModel extends AndroidViewModel {
         }
 
         @Override
-        public <T extends ViewModel> T create( Class<T> modelClass) {
+        public <T extends ViewModel> T create(Class<T> modelClass) {
             return (T) new TicketListViewModel(application, ticketRepository);
         }
     }
