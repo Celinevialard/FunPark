@@ -33,8 +33,8 @@ public class TicketRepository {
         return instance;
     }
 
-    public LiveData<TicketEntity> getTicket(final int ticketId, Application application) {
-        return ((BaseApp) application).getDatabase().ticketDao().getById(ticketId);
+    public LiveData<TicketEntity> getTicket(final int id, Application application) {
+        return ((BaseApp) application).getDatabase().ticketDao().getById(id);
     }
 
     public LiveData<List<TicketEntity>> getTickets(Application application) {

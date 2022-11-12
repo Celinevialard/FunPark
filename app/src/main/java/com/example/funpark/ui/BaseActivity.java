@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.example.funpark.R;
+import com.example.funpark.ui.ticket.TicketsActivity;
 import com.google.android.material.navigation.NavigationView;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -93,6 +94,11 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_tickets) {
             //intent = new Intent(this, ClientActivity.class);
+            intent = new Intent(this, TicketsActivity.class);
+            intent.setFlags(
+                    Intent.FLAG_ACTIVITY_NO_ANIMATION
+            );
+            startActivity(intent);
         } else if (id == R.id.nav_visitor) {
             //intent = new Intent(this, AccountsActivity.class);
             if (intent != null) {

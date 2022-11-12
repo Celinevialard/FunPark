@@ -23,24 +23,25 @@ public class TicketViewModel  extends AndroidViewModel {
     private TicketRepository repository;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<TicketEntity> observableAccount;
+    private final MediatorLiveData<TicketEntity> observableTicket;
 
     public TicketViewModel(@NonNull Application application,
-                            final int ticketId, TicketRepository ticketRepository) {
+                                final int ticketId,
+                                TicketRepository ticketRepository) {
         super(application);
 
         this.application = application;
 
         repository = ticketRepository;
 
-        observableAccount = new MediatorLiveData<>();
+        observableTicket = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
-        observableAccount.setValue(null);
+        observableTicket.setValue(null);
 
         LiveData<TicketEntity> ticket = repository.getTicket(ticketId, application);
 
         // observe the changes of the account entity from the database and forward them
-        observableAccount.addSource(ticket, observableAccount::setValue);
+        observableTicket.addSource(ticket, observableTicket::setValue);
     }
 
     /**
@@ -72,7 +73,7 @@ public class TicketViewModel  extends AndroidViewModel {
      * Expose the LiveData AccountEntity query so the UI can observe it.
      */
     public LiveData<TicketEntity> getTicket() {
-        return observableAccount;
+        return observableTicket;
     }
 
     public void createTicket(TicketEntity ticket, OnAsyncEventListener callback) {

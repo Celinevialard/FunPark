@@ -55,8 +55,10 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
         T item = mData.get(position);
         if (item.getClass().equals(VisitorEntity.class))
             holder.mTextView.setText(((VisitorEntity) item).getFirstName());
-        if (item.getClass().equals(TicketEntity.class))
+        if (item.getClass().equals(TicketEntity.class)){
             holder.mTextView.setText(((TicketEntity) item).getTicketName());
+        }
+
     }
 
     @Override
@@ -90,7 +92,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
                         return ((VisitorEntity) mData.get(oldItemPosition)).getId() == ((VisitorEntity) data.get(newItemPosition)).getId();
                     }
                     if (mData instanceof TicketEntity) {
-                        return false;
+                        return ((TicketEntity) mData.get(oldItemPosition)).getId() == ((TicketEntity) data.get(newItemPosition)).getId();
                     }
                     return false;
                 }
@@ -109,7 +111,12 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
                     if (mData instanceof TicketEntity) {
                         TicketEntity newTicket = (TicketEntity) data.get(newItemPosition);
                         TicketEntity oldTicket = (TicketEntity) mData.get(newItemPosition);
-                        return false;
+                        return newTicket.getId()== oldTicket.getId()
+                                && Objects.equals(newTicket.getTicketName(), newTicket.getTicketName())
+                                && Objects.equals(newTicket.getPriceSummer(), newTicket.getPriceSummer())
+                                && Objects.equals(newTicket.getPriceWinter(), newTicket.getPriceWinter())
+                                && Objects.equals(newTicket.getDuration(), newTicket.getDuration());
+
                     }
                     return false;
                 }

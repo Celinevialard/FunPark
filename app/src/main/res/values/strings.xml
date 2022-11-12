@@ -11,11 +11,15 @@
     <string name="title_activity_visitor">Visitor</string>
     <string name="title_activity_tickets">Tickets</string>
     <string name="title_activity_delete_visitor">Delete visitor</string>
+    <string name="title_activity_delete_ticket">Delete ticket</string>
 
     <string name="action_accept">Ok</string>
     <string name="action_cancel">Cancel</string>
 
     <string name="visitor_delete_msg">Delete visitor %s ?</string>
+    <string name="ticket_delete_msg">Delete ticket %s ?</string>
     <string name="visitor_deleted">deleted visitor</string>
+    <string name="ticket_deleted">deleted ticket</string>
+
 
 </resources>
