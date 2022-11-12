@@ -29,7 +29,7 @@ import java.util.List;
 
 public class VisitorsActivity extends BaseActivity {
 
-    private static final String TAG = "AccountsActivity";
+    private static final String TAG = "VisitorsActivity";
 
     private List<VisitorEntity> visitors;
     private RecyclerAdapter<VisitorEntity> adapter;
@@ -103,9 +103,9 @@ public class VisitorsActivity extends BaseActivity {
         VisitorListViewModel.Factory factory = new VisitorListViewModel.Factory(
                 getApplication());
         viewModel = new ViewModelProvider(new ViewModelStore(), (ViewModelProvider.Factory) factory).get(VisitorListViewModel.class);
-        viewModel.getVisitors().observe(this, accountEntities -> {
-            if (accountEntities != null) {
-                visitors = accountEntities;
+        viewModel.getVisitors().observe(this, visitorEntities -> {
+            if (visitorEntities != null) {
+                visitors = visitorEntities;
                 adapter.setData(visitors);
             }
         });
@@ -139,15 +139,15 @@ public class VisitorsActivity extends BaseActivity {
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), (dialog, which) -> {
             Toast toast = Toast.makeText(this, getString(R.string.visitor_deleted), Toast.LENGTH_LONG);
-            viewModel.deleteAccount(visitor, new OnAsyncEventListener() {
+            viewModel.deleteVisitor(visitor, new OnAsyncEventListener() {
                 @Override
                 public void onSuccess() {
-                    Log.d(TAG, "deleteAccount: success");
+                    Log.d(TAG, "deleteVisitor: success");
                 }
 
                 @Override
                 public void onFailure(Exception e) {
-                    Log.d(TAG, "deleteAccount: failure", e);
+                    Log.d(TAG, "deleteVisitor: failure", e);
                 }
             });
             toast.show();
