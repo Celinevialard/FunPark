@@ -7,6 +7,9 @@ import com.example.funpark.database.entity.TicketEntity;
 import com.example.funpark.database.entity.TicketTypeEntity;
 import com.example.funpark.database.entity.VisitorEntity;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class DatabaseInitializer {
@@ -56,11 +59,11 @@ public class DatabaseInitializer {
             e.printStackTrace();
         }
 
-        addVisitor(db,1,"Celine", "Vialard",new Date(1998,01,12),3,new Date(2022,11,12));
-        addVisitor(db,2,"Donald", "Trump",new Date(1912,04,22),2,new Date(2022,11,12));
-        addVisitor(db,3,"Lionel", "Messi",new Date(1982,12,22),1,new Date(2022,11,12));
-        addVisitor(db,4,"Mateo", "Messi",new Date(2010,2,15),4,new Date(2022,11,12));
-        addVisitor(db,5,"John", "Musk",new Date(2022,4,2),5,new Date(2022,11,12));
+        addVisitor(db,1,"Celine", "Vialard", new Date(1998- 1900,01-1,12),3,new Date(2022- 1900,11-1,12));
+        addVisitor(db,2,"Donald", "Trump",new Date(1912- 1900,04-1,22),2,new Date(2022- 1900,11-1,12));
+        addVisitor(db,3,"Lionel", "Messi",new Date(1982- 1900,12-1,22),1,new Date(2022- 1900,11-1,12));
+        addVisitor(db,4,"Mateo", "Messi",new Date(2010- 1900,2-1,15),4,new Date(2022- 1900,11-1,12));
+        addVisitor(db,5,"John", "Musk",new Date(2022- 1900,4-1,2),5,new Date(2022- 1900,11-1,12));
 
         try {
             // Let's ensure that the visitors are already stored in the database before we continue.

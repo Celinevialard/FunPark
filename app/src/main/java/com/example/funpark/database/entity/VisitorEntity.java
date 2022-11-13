@@ -8,6 +8,7 @@ import androidx.room.TypeConverters;
 
 import com.example.funpark.util.DateConverter;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity(tableName = "visitors", primaryKeys = {"id"}, foreignKeys =
@@ -86,5 +87,11 @@ public class VisitorEntity {
 
     public void setVisitDate(Date visitDate) {
         this.visitDate = visitDate;
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
+        return lastName + " " + firstName + " " + format.format(visitDate);
     }
 }

@@ -54,11 +54,10 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
     public void onBindViewHolder(ViewHolder holder, int position) {
         T item = mData.get(position);
         if (item.getClass().equals(VisitorEntity.class))
-            holder.mTextView.setText(((VisitorEntity) item).getFirstName());
+            holder.mTextView.setText(((VisitorEntity) item).toString());
         if (item.getClass().equals(TicketEntity.class)){
             holder.mTextView.setText(((TicketEntity) item).getTicketName());
         }
-
     }
 
     @Override
