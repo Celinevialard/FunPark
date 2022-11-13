@@ -47,4 +47,10 @@ public class TicketTypeEntity{
     public void setNameFr(String nameFr) {
         this.nameFr = nameFr;
     }
+
+    @Override
+    public String toString() {
+        return  "nameEn='" + nameEn + '\'' +
+                ", nameFr='" + nameFr + '\'';
+    }
 }

@@ -1,5 +1,11 @@
 package com.example.funpark.ui;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.FrameLayout;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,17 +13,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.FrameLayout;
-
 import com.example.funpark.R;
 import com.example.funpark.ui.ticket.TicketsActivity;
+import com.example.funpark.ui.visitor.VisitorsActivity;
 import com.google.android.material.navigation.NavigationView;
 
-public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     protected FrameLayout frameLayout;
 
@@ -93,20 +94,17 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setCheckedItem(id);
 
         if (id == R.id.nav_tickets) {
-            //intent = new Intent(this, ClientActivity.class);
             intent = new Intent(this, TicketsActivity.class);
             intent.setFlags(
                     Intent.FLAG_ACTIVITY_NO_ANIMATION
             );
             startActivity(intent);
         } else if (id == R.id.nav_visitor) {
-            //intent = new Intent(this, AccountsActivity.class);
-            if (intent != null) {
-                intent.setFlags(
-                        Intent.FLAG_ACTIVITY_NO_ANIMATION
-                );
-                startActivity(intent);
-            }
+            intent = new Intent(this, VisitorsActivity.class);
+            intent.setFlags(
+                    Intent.FLAG_ACTIVITY_NO_ANIMATION
+            );
+            startActivity(intent);
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

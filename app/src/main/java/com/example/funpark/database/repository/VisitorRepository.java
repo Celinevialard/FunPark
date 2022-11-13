@@ -38,18 +38,18 @@ public class VisitorRepository {
         return ((BaseApp) application).getDatabase().visitorDao().getAll();
     }
 
-    public void insert(final VisitorEntity client, OnAsyncEventListener callback,
+    public void insert(final VisitorEntity visitor, OnAsyncEventListener callback,
                        Application application) {
-        new CreateVisitor(application, callback).execute(client);
+        new CreateVisitor(application, callback).execute(visitor);
     }
 
-    public void update(final VisitorEntity client, OnAsyncEventListener callback,
+    public void update(final VisitorEntity visitor, OnAsyncEventListener callback,
                        Application application) {
-        new UpdateVisitor(application, callback).execute(client);
+        new UpdateVisitor(application, callback).execute(visitor);
     }
 
-    public void delete(final VisitorEntity client, OnAsyncEventListener callback,
+    public void delete(final VisitorEntity visitor, OnAsyncEventListener callback,
                        Application application) {
-        new DeleteVisitor(application, callback).execute(client);
+        new DeleteVisitor(application, callback).execute(visitor);
     }
 }

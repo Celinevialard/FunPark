@@ -1,5 +1,6 @@
-package com.example.funpark.ui;
+package com.example.funpark.ui.visitor;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,9 +21,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.funpark.R;
 import com.example.funpark.adapter.RecyclerAdapter;
 import com.example.funpark.database.entity.VisitorEntity;
+import com.example.funpark.ui.BaseActivity;
 import com.example.funpark.util.OnAsyncEventListener;
 import com.example.funpark.util.RecyclerViewItemClickListener;
 import com.example.funpark.viewmodel.visitor.VisitorListViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,15 +71,15 @@ public class VisitorsActivity extends BaseActivity {
                 Log.d(TAG, "clicked position:" + position);
                 Log.d(TAG, "clicked on: " + visitors.get(position).getFirstName());
 
-                /*
+
                 Intent intent = new Intent(VisitorsActivity.this,VisitorDetailActivity.class);
                 intent.setFlags(
                         Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                 Intent.FLAG_ACTIVITY_NO_HISTORY
                 );
-                intent.putExtra("accountId", visitors.get(position).getId());
+                intent.putExtra("visitorId", visitors.get(position).getId());
                 startActivity(intent);
-                 */
+
             }
 
             @Override
@@ -88,10 +91,10 @@ public class VisitorsActivity extends BaseActivity {
             }
         });
 
-        /*
+
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(view -> {
-                    Intent intent = new Intent(VisitorsActivity.this, VisitorsEditActivity.class);
+                    Intent intent = new Intent(VisitorsActivity.this, VisitorDetailActivity.class);
                     intent.setFlags(
                             Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                     Intent.FLAG_ACTIVITY_NO_HISTORY
@@ -99,7 +102,7 @@ public class VisitorsActivity extends BaseActivity {
                     startActivity(intent);
                 }
         );
-*/
+
         VisitorListViewModel.Factory factory = new VisitorListViewModel.Factory(
                 getApplication());
         viewModel = new ViewModelProvider(new ViewModelStore(), (ViewModelProvider.Factory) factory).get(VisitorListViewModel.class);

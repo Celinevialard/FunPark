@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.example.funpark.database.AppDatabase;
 import com.example.funpark.database.repository.TicketRepository;
+import com.example.funpark.database.repository.TicketTypeRepository;
 import com.example.funpark.database.repository.VisitorRepository;
 
 
@@ -27,5 +28,9 @@ public class BaseApp extends Application {
 
     public TicketRepository getTicketRepository() {
         return TicketRepository.getInstance();
+    }
+
+    public TicketTypeRepository getTicketTypeRepository() {
+        return TicketTypeRepository.getInstance();
     }
 }

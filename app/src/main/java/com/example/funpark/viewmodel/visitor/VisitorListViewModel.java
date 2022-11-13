@@ -69,7 +69,7 @@ public class VisitorListViewModel extends AndroidViewModel {
     }
 
     /**
-     * Expose the LiveData ClientAccounts query so the UI can observe it.
+     * Expose the LiveData VisitorAccounts query so the UI can observe it.
      */
     public LiveData<List<VisitorEntity>> getVisitors() {
         return observableVisitors;

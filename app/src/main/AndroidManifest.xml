@@ -14,7 +14,14 @@
         android:theme="@style/Theme.FunPark"
         tools:targetApi="31">
         <activity
-            android:name=".ui.VisitorsActivity"
+            android:name=".ui.visitor.VisitorDetailActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.visitor.VisitorsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
