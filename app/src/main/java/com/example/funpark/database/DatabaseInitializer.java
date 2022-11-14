@@ -41,10 +41,9 @@ public class DatabaseInitializer {
 
 
     private static void populateWithTestData(AppDatabase db) {
-        db.visitorDao().deleteAll();
         db.ticketTypeDao().deleteAll();
         db.ticketDao().deleteAll();
-
+        db.visitorDao().deleteAll();
 
         addTicketType(db,1,"Adult","Adulte");
         addTicketType(db,2,"Senior","Sénior");

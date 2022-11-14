@@ -20,8 +20,8 @@
 
     <EditText
         android:id="@+id/lastName"
-        android:layout_width="412dp"
-        android:layout_height="53dp"
+        android:layout_width="0dp"
+        android:layout_height="57dp"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="@string/lastName"
@@ -33,7 +33,7 @@
     <EditText
         android:id="@+id/birthDate"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="57dp"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="@string/birthDate"
@@ -45,7 +45,7 @@
     <EditText
         android:id="@+id/visitDate"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="57dp"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="@string/visitDate"
@@ -57,7 +57,7 @@
     <Spinner
         android:id="@+id/ticketType"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="57dp"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

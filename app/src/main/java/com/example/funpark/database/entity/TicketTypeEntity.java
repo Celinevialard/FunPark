@@ -50,7 +50,6 @@ public class TicketTypeEntity{
 
     @Override
     public String toString() {
-        return  "nameEn='" + nameEn + '\'' +
-                ", nameFr='" + nameFr + '\'';
+        return  nameEn ;
     }
 }

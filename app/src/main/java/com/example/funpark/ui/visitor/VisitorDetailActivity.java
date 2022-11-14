@@ -31,6 +31,7 @@ import com.example.funpark.util.OnAsyncEventListener;
 import com.example.funpark.viewmodel.visitor.VisitorViewModel;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -54,6 +55,8 @@ public class VisitorDetailActivity extends BaseActivity {
     private Spinner spTicketType;
 
     private VisitorEntity visitor;
+    private ArrayList<TicketTypeEntity> ticketTypes;
+    ListAdapter<TicketTypeEntity> adapterTicketType;
 
     private VisitorViewModel viewModel;
 
@@ -73,11 +76,19 @@ public class VisitorDetailActivity extends BaseActivity {
         VisitorViewModel.Factory factory = new VisitorViewModel.Factory(
                 getApplication(), visitorId);
         viewModel = new ViewModelProvider(new ViewModelStore(), (ViewModelProvider.Factory) factory).get(VisitorViewModel.class);
+        viewModel.getTicketTypes().observe(this, ticketTypeEntities ->{
+            if(ticketTypeEntities!=null){
+                for (TicketTypeEntity t:ticketTypeEntities) {
+                    ticketTypes.add(t);
+                }
+                adapterTicketType.updateData(ticketTypes);
+            }
+        });
         viewModel.getVisitor().observe(this, visitorEntity -> {
             if (visitorEntity != null) {
                 visitor = visitorEntity;
-                updateContent();
             }
+            updateContent();
         });
 
         if (visitorId != 0) {
@@ -142,10 +153,8 @@ public class VisitorDetailActivity extends BaseActivity {
             createVisitor(
                     etFirstName.getText().toString(),
                     etLastName.getText().toString(),
-                    new Date(),
-                    new Date(),
-                    //etBirthDate.getText().toString(),
-                    //etVisitDate.getText().toString(),
+                    new Date(etBirthDate.getText().toString()),
+                    new Date(etVisitDate.getText().toString()),
                     spTicketType.getSelectedItemPosition()
             );
         }
@@ -171,6 +180,10 @@ public class VisitorDetailActivity extends BaseActivity {
 
         spTicketType.setFocusable(false);
         spTicketType.setEnabled(false);
+
+        ticketTypes = new ArrayList<>();
+        adapterTicketType = new ListAdapter<>(this, R.layout.row_ticket_type, new ArrayList<>());
+        spTicketType.setAdapter(adapterTicketType);
         }
 
     private void switchEditableMode() {
@@ -200,10 +213,8 @@ public class VisitorDetailActivity extends BaseActivity {
             saveChanges(
                     etFirstName.getText().toString(),
                     etLastName.getText().toString(),
-                    new Date(),
-                    new Date(),
-                    //etBirthDate.getText().toString(),
-                    //etVisitDate.getText().toString(),
+                    new Date(etBirthDate.getText().toString()),
+                    new Date(etVisitDate.getText().toString()),
                     spTicketType.getSelectedItemPosition()
             );
             etFirstName.setFocusable(false);
@@ -283,17 +294,17 @@ public class VisitorDetailActivity extends BaseActivity {
     }
 
     private void updateContent() {
-        List<TicketTypeEntity> ticketTypes =  viewModel.getTicketTypes();
-        spTicketType.setAdapter(new ListAdapter<TicketTypeEntity>(this, R.layout.activity_visitor_detail, ticketTypes));
+
+        spTicketType.setAdapter(adapterTicketType);
 
         if (visitor != null) {
             etFirstName.setText(visitor.getFirstName());
             etLastName.setText(visitor.getLastName());
             etBirthDate.setText(visitor.getBirthDate().toString());
             etVisitDate.setText(visitor.getVisitDate().toString());
-            //spTicketType.setSelection(visitor.getTicketType());
+            spTicketType.setSelection(visitor.getTicketType());
         }else{
-            etVisitDate.setText(new Date().toString());
+            etVisitDate.setText((new Date()).toString());
         }
 
     }

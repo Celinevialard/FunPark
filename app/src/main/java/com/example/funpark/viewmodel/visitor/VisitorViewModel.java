@@ -1,6 +1,7 @@
 package com.example.funpark.viewmodel.visitor;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -10,13 +11,14 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.funpark.BaseApp;
-import com.example.funpark.database.entity.TicketEntity;
 import com.example.funpark.database.entity.TicketTypeEntity;
 import com.example.funpark.database.entity.VisitorEntity;
 import com.example.funpark.database.repository.TicketTypeRepository;
 import com.example.funpark.database.repository.VisitorRepository;
 import com.example.funpark.util.OnAsyncEventListener;
 
+import java.io.Console;
+import java.util.ArrayList;
 import java.util.List;
 
 public class VisitorViewModel extends AndroidViewModel {
@@ -96,7 +98,7 @@ public class VisitorViewModel extends AndroidViewModel {
         repository.delete(visitor, callback, application);
     }
 
-    public List<TicketTypeEntity> getTicketTypes(){
-        return repositoryTicketType.getTicketTypes(application).getValue();
+    public LiveData<List<TicketTypeEntity>> getTicketTypes() {
+        return repositoryTicketType.getTicketTypes(application);
     }
 }
