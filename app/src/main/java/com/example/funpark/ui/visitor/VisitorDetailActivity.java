@@ -1,28 +1,22 @@
 package com.example.funpark.ui.visitor;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
 
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.funpark.R;
+import com.example.funpark.adapter.DateAdapter;
 import com.example.funpark.adapter.ListAdapter;
 import com.example.funpark.database.entity.TicketTypeEntity;
 import com.example.funpark.database.entity.VisitorEntity;
@@ -30,11 +24,9 @@ import com.example.funpark.ui.BaseActivity;
 import com.example.funpark.util.OnAsyncEventListener;
 import com.example.funpark.viewmodel.visitor.VisitorViewModel;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 public class VisitorDetailActivity extends BaseActivity {
 
@@ -51,7 +43,11 @@ public class VisitorDetailActivity extends BaseActivity {
     private EditText etFirstName;
     private EditText etLastName;
     private EditText etBirthDate;
+    private DatePickerDialog birthDateDialog;
+    private DateAdapter birthDate;
     private EditText etVisitDate;
+    private DatePickerDialog visitDateDialog;
+    private DateAdapter visitDate;
     private Spinner spTicketType;
 
     private VisitorEntity visitor;
@@ -102,7 +98,7 @@ public class VisitorDetailActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        if (visitor != null)  {
+        if (visitor != null && visitor.getFirstName()!=null)  {
             menu.add(0, EDIT_VISITOR, Menu.NONE, getString(R.string.action_edit))
                     .setIcon(R.drawable.ic_mode_edit_white_24dp)
                     .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
@@ -153,8 +149,8 @@ public class VisitorDetailActivity extends BaseActivity {
             createVisitor(
                     etFirstName.getText().toString(),
                     etLastName.getText().toString(),
-                    new Date(etBirthDate.getText().toString()),
-                    new Date(etVisitDate.getText().toString()),
+                    birthDate,
+                    visitDate,
                     spTicketType.getSelectedItemPosition()
             );
         }
@@ -213,8 +209,8 @@ public class VisitorDetailActivity extends BaseActivity {
             saveChanges(
                     etFirstName.getText().toString(),
                     etLastName.getText().toString(),
-                    new Date(etBirthDate.getText().toString()),
-                    new Date(etVisitDate.getText().toString()),
+                    birthDate,
+                    visitDate,
                     spTicketType.getSelectedItemPosition()
             );
             etFirstName.setFocusable(false);
@@ -293,19 +289,49 @@ public class VisitorDetailActivity extends BaseActivity {
         }
     }
 
+    public void showDatePickerBirthDate(View view){
+       birthDateDialog.show();
+    }
+
+    public void showDatePickerVisitDate(View view){
+        visitDateDialog.show();
+    }
+
     private void updateContent() {
 
         spTicketType.setAdapter(adapterTicketType);
-
-        if (visitor != null) {
+       if (visitor != null) {
             etFirstName.setText(visitor.getFirstName());
             etLastName.setText(visitor.getLastName());
-            etBirthDate.setText(visitor.getBirthDate().toString());
-            etVisitDate.setText(visitor.getVisitDate().toString());
             spTicketType.setSelection(visitor.getTicketType());
-        }else{
-            etVisitDate.setText((new Date()).toString());
-        }
+        }else {
+           visitor = new VisitorEntity();
+           Date currentTime = Calendar.getInstance().getTime();
+           visitor.setVisitDate(currentTime);
+           visitor.setBirthDate(currentTime);
+       }
+        birthDate = new DateAdapter(visitor.getBirthDate());
+        birthDateDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                birthDate.setYear(year);
+                birthDate.setMonth(month);
+                birthDate.setDate(dayOfMonth);
+                etBirthDate.setText(birthDate.toString());
+            }
+        },birthDate.getYear(),birthDate.getMonth(), birthDate.getDate());
+        etBirthDate.setText(birthDate.toString());
 
+        visitDate=new DateAdapter(visitor.getVisitDate());
+        visitDateDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+                visitDate.setYear(year);
+                visitDate.setMonth(month);
+                visitDate.setDate(dayOfMonth);
+                etVisitDate.setText(visitDate.toString());
+            }
+        },visitDate.getYear(),visitDate.getMonth(), visitDate.getDate());
+        etVisitDate.setText(visitDate.toString());
     }
 }
