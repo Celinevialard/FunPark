@@ -1,5 +1,6 @@
 package com.example.funpark.ui.ticket;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import com.example.funpark.util.RecyclerViewItemClickListener;
 import com.example.funpark.viewmodel.ticket.TicketListViewModel;
 import com.example.funpark.viewmodel.ticket.TicketViewModel;
 import com.example.funpark.viewmodel.visitor.VisitorListViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,15 +74,15 @@ public class TicketsActivity extends BaseActivity {
                 Log.d(TAG, "clicked position:" + position);
                 Log.d(TAG, "clicked on: " + tickets.get(position).getTicketName());
 
-                /*
-                Intent intent = new Intent(VisitorsActivity.this,VisitorDetailActivity.class);
+
+                Intent intent = new Intent(TicketsActivity.this,TicketDetailActivity.class);
                 intent.setFlags(
                         Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                 Intent.FLAG_ACTIVITY_NO_HISTORY
                 );
-                intent.putExtra("accountId", visitors.get(position).getId());
+                intent.putExtra("ticketId", tickets.get(position).getId());
                 startActivity(intent);
-                 */
+
             }
 
             @Override
@@ -92,10 +94,10 @@ public class TicketsActivity extends BaseActivity {
             }
         });
 
-        /*
+
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(view -> {
-                    Intent intent = new Intent(VisitorsActivity.this, VisitorsEditActivity.class);
+                    Intent intent = new Intent(TicketsActivity.this, TicketDetailActivity.class);
                     intent.setFlags(
                             Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                     Intent.FLAG_ACTIVITY_NO_HISTORY
@@ -103,7 +105,7 @@ public class TicketsActivity extends BaseActivity {
                     startActivity(intent);
                 }
         );
-*/
+
         TicketListViewModel.Factory factory = new TicketListViewModel.Factory(
                 getApplication());
         viewModel = new ViewModelProvider(new ViewModelStore(), (ViewModelProvider.Factory) factory).get(TicketListViewModel.class);

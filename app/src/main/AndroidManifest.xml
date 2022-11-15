@@ -22,6 +22,14 @@
                 android:value="com.example.funpark.ui.visitor.VisitorsActivity" />
         </activity>
         <activity
+            android:name=".ui.ticket.TicketDetailActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.ticket.TicketsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.funpark.ui.ticket.TicketsActivity" />
+        </activity>
+        <activity
             android:name=".ui.visitor.VisitorsActivity"
             android:exported="false">
             <meta-data

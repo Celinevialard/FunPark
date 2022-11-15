@@ -12,6 +12,8 @@
     <string name="title_activity_visitor_details">Details visitor</string>
     <string name="title_activity_create_visitor">Create visitor</string>
     <string name="title_activity_delete_ticket">Delete ticket</string>
+    <string name="title_activity_ticket_details">Details ticket</string>
+    <string name="title_activity_create_ticket">Create ticket</string>
 
     <string name="action_settings">Settings</string>
     <string name="action_error">Something went wrong</string>
@@ -26,11 +28,17 @@
     <string name="visitor_deleted">deleted visitor</string>
     <string name="ticket_deleted">deleted ticket</string>
     <string name="visitor_edited">Visitor edited</string>
+    <string name="ticket_edited">Visitor edited</string>
 
     <string name="firstName">Firstname</string>
     <string name="lastName">Lastname</string>
     <string name="birthDate">Birthdate</string>
     <string name="visitDate">Date of the visit</string>
     <string name="ticketType">Type of ticket</string>
+
+    <string name="ticketName">TicketName</string>
+    <string name="priceSummer">PriceSummer</string>
+    <string name="priceWinter">PriceWinter</string>
+    <string name="duration">Duration</string>
 
 </resources>
