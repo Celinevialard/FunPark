@@ -72,8 +72,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         if (item.getItemId() == R.id.action_settings) {
-            //Intent intent = new Intent(this, SettingsActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
