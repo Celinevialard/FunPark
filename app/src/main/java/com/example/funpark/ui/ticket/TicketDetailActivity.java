@@ -293,10 +293,17 @@ private TicketViewModel viewModel;
         spTicketType.setAdapter(adapterTicketType);
 
         if (ticket != null) {
+
+            //String test1 = String.valueOf(ticket.getPriceSummer());
+
+            //String test2 = String.valueOf(ticket.getPriceWinter());
+
+            //String test3 = String.valueOf(ticket.getDuration());
+
             etTicketName.setText(ticket.getTicketName());
-            etPriceSummer.setText((int) ticket.getPriceSummer());
-            etPriceWinter.setText((int)ticket.getPriceWinter());
-            etDuration.setText(ticket.getDuration());
+            etPriceSummer.setText(String.valueOf(ticket.getPriceSummer()));
+            etPriceWinter.setText(String.valueOf(ticket.getPriceWinter()));
+            etDuration.setText(String.valueOf(ticket.getDuration()));
             spTicketType.setSelection(ticket.getTicketType());
         }
 
