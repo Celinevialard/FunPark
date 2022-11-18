@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.room.*;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.funpark.database.dao.SalesTicketDao;
 import com.example.funpark.database.dao.TicketDao;
 import com.example.funpark.database.dao.TicketTypeDao;
 import com.example.funpark.database.dao.VisitorDao;
@@ -30,6 +31,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract TicketTypeDao ticketTypeDao();
     public abstract VisitorDao visitorDao();
     public abstract TicketDao ticketDao();
+    public abstract SalesTicketDao salesTicketDao();
 
     private final MutableLiveData<Boolean> isDatabaseCreated = new MutableLiveData<>();
 
@@ -76,6 +78,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 database.ticketTypeDao().deleteAll();
                 //Hardcoder le delete ticket mais expliquer qu'il sera supprimer avec deletecascade dans tickettype
                 database.ticketDao().deleteAll();
+                database.salesTicketDao().deleteAll();
                 DatabaseInitializer.populateDatabase(database);
             });
         });
