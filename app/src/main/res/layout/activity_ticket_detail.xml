@@ -7,16 +7,28 @@
     tools:context=".ui.ticket.TicketDetailActivity">
 
     <EditText
-        android:id="@+id/ticketName"
+        android:id="@+id/ticketNameEn"
         android:layout_width="0dp"
         android:layout_height="57dp"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="@string/ticketName"
+        android:hint="@string/ticketNameEn"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/ticketNameFr"
+        android:layout_width="0dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="@string/ticketNameFr"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ticketNameEn" />
 
     <EditText
         android:id="@+id/priceSummer"
@@ -28,7 +40,7 @@
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ticketName" />
+        app:layout_constraintTop_toBottomOf="@+id/ticketNameFr" />
 
     <EditText
         android:id="@+id/priceWinter"

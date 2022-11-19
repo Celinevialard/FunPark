@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.funpark.R;
+import com.example.funpark.database.entity.SalesTicketEntity;
 import com.example.funpark.database.entity.TicketEntity;
 import com.example.funpark.database.entity.VisitorEntity;
 import com.example.funpark.util.RecyclerViewItemClickListener;
@@ -56,7 +57,10 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
         if (item.getClass().equals(VisitorEntity.class))
             holder.mTextView.setText(((VisitorEntity) item).toString());
         if (item.getClass().equals(TicketEntity.class)){
-            holder.mTextView.setText(((TicketEntity) item).getTicketName());
+            holder.mTextView.setText(((TicketEntity) item).getTicketNameEn());
+        }
+        if (item.getClass().equals(SalesTicketEntity.class)){
+            holder.mTextView.setText(((SalesTicketEntity) item).getFirstname());
         }
     }
 
@@ -111,7 +115,8 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
                         TicketEntity newTicket = (TicketEntity) data.get(newItemPosition);
                         TicketEntity oldTicket = (TicketEntity) mData.get(newItemPosition);
                         return newTicket.getId()== oldTicket.getId()
-                                && Objects.equals(newTicket.getTicketName(), newTicket.getTicketName())
+                                && Objects.equals(newTicket.getTicketNameEn(), newTicket.getTicketNameEn())
+                                && Objects.equals(newTicket.getTicketNameFr(), newTicket.getTicketNameFr())
                                 && Objects.equals(newTicket.getPriceSummer(), newTicket.getPriceSummer())
                                 && Objects.equals(newTicket.getPriceWinter(), newTicket.getPriceWinter())
                                 && Objects.equals(newTicket.getDuration(), newTicket.getDuration());
