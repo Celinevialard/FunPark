@@ -17,6 +17,7 @@ import com.example.funpark.R;
 import com.example.funpark.adapter.RecyclerAdapter;
 import com.example.funpark.database.entity.SalesTicketEntity;
 
+import com.example.funpark.database.pojo.SalesTicketWithTickets;
 import com.example.funpark.util.RecyclerViewItemClickListener;
 import com.example.funpark.viewmodel.salesTicket.SalesTicketListViewModel;
 
@@ -28,8 +29,8 @@ public class SalesTicketsActivity extends AppCompatActivity {
 
     private static final String TAG = "SalesTicketsActivity";
 
-    private List<SalesTicketEntity> salesTickets;
-    private RecyclerAdapter<SalesTicketEntity> adapter;
+    private List<SalesTicketWithTickets> salesTickets;
+    private RecyclerAdapter<SalesTicketWithTickets> adapter;
     private SalesTicketListViewModel viewModel;
 
     @Override
@@ -52,7 +53,7 @@ public class SalesTicketsActivity extends AppCompatActivity {
         @Override
         public void onItemClick(View v, int position) {
             Log.d(TAG, "clicked position:" + position);
-            Log.d(TAG, "clicked on: " + salesTickets.get(position).getFirstname());
+            Log.d(TAG, "clicked on: " + salesTickets.get(position).salesTicket.getFirstname());
 
 
             Intent intent = new Intent(SalesTicketsActivity.this, SalesTicketDetailActivity.class);
@@ -60,7 +61,7 @@ public class SalesTicketsActivity extends AppCompatActivity {
                     Intent.FLAG_ACTIVITY_NO_ANIMATION |
                             Intent.FLAG_ACTIVITY_NO_HISTORY
             );
-            intent.putExtra("salesTicketId", salesTickets.get(position).getId());
+            intent.putExtra("salesTicketId", salesTickets.get(position).salesTicket.getId());
             startActivity(intent);
 
         }
@@ -68,7 +69,7 @@ public class SalesTicketsActivity extends AppCompatActivity {
         @Override
         public void onItemLongClick(View v, int position) {
             Log.d(TAG, "longClicked position:" + position);
-            Log.d(TAG, "longClicked on: " + salesTickets.get(position).getId());
+            Log.d(TAG, "longClicked on: " + salesTickets.get(position).salesTicket.getId());
 
         }
     }, this);

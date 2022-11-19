@@ -7,8 +7,10 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Transaction;
 
 import com.example.funpark.database.entity.SalesTicketEntity;
+import com.example.funpark.database.pojo.SalesTicketWithTickets;
 
 
 import java.util.List;
@@ -20,6 +22,9 @@ public interface SalesTicketDao {
 
     @Query("SELECT * FROM salesTickets")
     LiveData<List<SalesTicketEntity>> getAll();
+
+    @Query("SELECT * FROM salesTickets")
+    LiveData<List<SalesTicketWithTickets>> getSalesTicketWithTickets();
 
     @Query("DELETE FROM salesTickets")
     void deleteAll();

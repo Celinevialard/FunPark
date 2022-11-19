@@ -12,6 +12,11 @@ public class SalesTicketWithTickets {
     @Embedded
     public SalesTicketEntity salesTicket;
 
-    @Relation(parentColumn = "email", entityColumn = "owner", entity = TicketEntity.class)
-    public List<TicketEntity> tickets;
+    @Relation(parentColumn = "ticket", entityColumn = "id", entity = TicketEntity.class)
+    public TicketEntity ticket;
+
+    @Override
+    public String toString() {
+        return salesTicket.getFirstname()+" "+ticket.getTicketNameEn();
+    }
 }
