@@ -11,4 +11,10 @@
         android:entryValues="@array/pref_language_list_values"
         android:key="list_language"
         android:title="@string/settings_translation" />
+
+    <Preference
+        android:selectable="false"
+        android:enabled="true"
+        android:title="@string/pref_header_about"
+        android:summary="@string/pref_about_text" />
 </PreferenceScreen>

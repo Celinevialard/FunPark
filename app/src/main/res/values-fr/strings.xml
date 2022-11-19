@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">FunPark</string>
     <string name="mainActivity_Button_Admin">Admin</string>
     <string name="mainActivity_Button_Visitor">Visiteur</string>
 
@@ -40,8 +41,12 @@
     <string name="visitDate">Date de la visite</string>
     <string name="ticketType">Type de billet</string>
 
-    <string name="ticketName">Nom du billet</string>
+    <string name="ticketNameEn">Nom du billet anglais</string>
+    <string name="ticketNameFr">Nom du billet français</string>
     <string name="priceSummer">Prix d\'été</string>
     <string name="priceWinter">Prix d\'hiver</string>
     <string name="duration">Durée</string>
+
+    <string name="pref_header_about">À Propos</string>
+    <string name="pref_about_text">Voici notre application fait durant le cours de Android studio</string>
 </resources>

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
+import android.app.ActionBar;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
@@ -21,9 +22,22 @@ public class SettingsActivity extends AppCompatActivity {
         //getLayoutInflater().inflate(R.layout.activity_settings, frameLayout);
 
         //setTitle(R.string.title_activity_settings);
-
+        setupActionBar();
+        setActionBarTitle(getString(R.string.title_activity_settings));
         getSupportFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
 
     }
+    private void setupActionBar() {
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            // Show the Up button in the action bar.
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
+    public void setActionBarTitle(String title) {
+        setTitle(title);
+    }
+
 
 }
