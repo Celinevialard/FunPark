@@ -32,7 +32,7 @@
     <string name="visitor_deleted">deleted visitor</string>
     <string name="ticket_deleted">deleted ticket</string>
     <string name="visitor_edited">Visitor edited</string>
-    <string name="ticket_edited">Visitor edited</string>
+    <string name="ticket_edited">Ticket edited</string>
 
     <string name="firstName">Firstname</string>
     <string name="lastName">Lastname</string>
@@ -44,7 +44,14 @@
     <string name="priceSummer">PriceSummer</string>
     <string name="priceWinter">PriceWinter</string>
     <string name="duration">Duration</string>
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="pref_language_list_titles" translatable="false">
+        <item>English</item>
+        <item>Français</item>
+    </string-array>
+    <string-array name="pref_language_list_values" translatable="false">
+        <item>en</item>
+        <item>fr</item>
+    </string-array>
 
 </resources>

@@ -60,18 +60,10 @@ public class VisitorsActivity extends BaseActivity {
                 LinearLayoutManager.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        // TODO
-        //SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
-        //String user = settings.getString(BaseActivity.PREFS_USER, null);
-
         visitors = new ArrayList<>();
         adapter = new RecyclerAdapter<>(new RecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                Log.d(TAG, "clicked position:" + position);
-                Log.d(TAG, "clicked on: " + visitors.get(position).getFirstName());
-
-
                 Intent intent = new Intent(VisitorsActivity.this,VisitorDetailActivity.class);
                 intent.setFlags(
                         Intent.FLAG_ACTIVITY_NO_ANIMATION |

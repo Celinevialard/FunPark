@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mainActivity_Button_Admin">Admin</string>
+    <string name="mainActivity_Button_Visitor">Visiteur</string>
+
+    <string name="navigation_drawer_open">ouvrir la bar de navigation</string>
+    <string name="navigation_drawer_close">fermer la bar de navigation</string>
+
+    <string name="title_activity_visitor">Visiteur</string>
+    <string name="title_activity_tickets">Billets</string>
+    <string name="title_activity_settings">Paramètre</string>
+    <string name="title_activity_delete_visitor">Supprimer visiteur</string>
+    <string name="title_activity_visitor_details">Details visiteur</string>
+    <string name="title_activity_create_visitor">Créer visiteur</string>
+    <string name="title_activity_delete_ticket">Supprimer billet</string>
+    <string name="title_activity_ticket_details">Details billet</string>
+    <string name="title_activity_create_ticket">Créer billet</string>
+
+    <string name="action_settings">Paramètre</string>
+    <string name="settings_dark_mode">Mode nuit</string>
+    <string name="settings_translation">Changer de langue</string>
+    <string name="settings_about">à propos</string>
+    <string name="action_error">Une erreur est survenu</string>
+    <string name="action_accept">Ok</string>
+    <string name="action_cancel">Annuler</string>
+    <string name="action_create">Créer</string>
+    <string name="action_edit">Modifier</string>
+    <string name="action_delete">Supprimer</string>
+
+    <string name="visitor_delete_msg">Voulez-vous vraiment supprimer %s ?</string>
+    <string name="ticket_delete_msg">Voulez-vous vraiment supprimer %s ?</string>
+    <string name="visitor_deleted">Visiteur supprimé</string>
+    <string name="ticket_deleted">Billet supprimer</string>
+    <string name="visitor_edited">Visiteur modifié</string>
+    <string name="ticket_edited">Billet modifié</string>
+
+    <string name="firstName">Prénom</string>
+    <string name="lastName">Nom</string>
+    <string name="birthDate">Date de naissance</string>
+    <string name="visitDate">Date de la visite</string>
+    <string name="ticketType">Type de billet</string>
+
+    <string name="ticketName">Nom du billet</string>
+    <string name="priceSummer">Prix d\'été</string>
+    <string name="priceWinter">Prix d\'hiver</string>
+    <string name="duration">Durée</string>
+</resources>
