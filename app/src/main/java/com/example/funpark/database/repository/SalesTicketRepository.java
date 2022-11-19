@@ -10,6 +10,7 @@ import com.example.funpark.database.async.salesTicket.DeleteSalesTicket;
 
 import com.example.funpark.database.entity.SalesTicketEntity;
 
+import com.example.funpark.database.pojo.SalesTicketWithTickets;
 import com.example.funpark.util.OnAsyncEventListener;
 
 import java.util.List;
@@ -39,6 +40,10 @@ public class SalesTicketRepository {
 
     public LiveData<List<SalesTicketEntity>> getSalesTickets(Application application) {
         return ((BaseApp)application).getDatabase().salesTicketDao().getAll();
+    }
+
+    public LiveData<List<SalesTicketWithTickets>> getSalesTicketsWithTickets(Application application) {
+        return ((BaseApp)application).getDatabase().salesTicketDao().getSalesTicketWithTickets();
     }
 
     public void insert(final SalesTicketEntity salesTicket, OnAsyncEventListener callback,

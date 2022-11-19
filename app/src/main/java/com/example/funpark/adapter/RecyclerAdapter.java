@@ -11,6 +11,7 @@ import com.example.funpark.R;
 import com.example.funpark.database.entity.SalesTicketEntity;
 import com.example.funpark.database.entity.TicketEntity;
 import com.example.funpark.database.entity.VisitorEntity;
+import com.example.funpark.database.pojo.SalesTicketWithTickets;
 import com.example.funpark.util.RecyclerViewItemClickListener;
 
 import java.util.List;
@@ -59,8 +60,8 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
         if (item.getClass().equals(TicketEntity.class)){
             holder.mTextView.setText(((TicketEntity) item).getTicketNameEn());
         }
-        if (item.getClass().equals(SalesTicketEntity.class)){
-            holder.mTextView.setText(((SalesTicketEntity) item).getFirstname());
+        if (item.getClass().equals(SalesTicketWithTickets.class)){
+            holder.mTextView.setText(((SalesTicketWithTickets) item).toString());
         }
     }
 
@@ -97,6 +98,9 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
                     if (mData instanceof TicketEntity) {
                         return ((TicketEntity) mData.get(oldItemPosition)).getId() == ((TicketEntity) data.get(newItemPosition)).getId();
                     }
+                    if (mData instanceof SalesTicketWithTickets) {
+                        return ((SalesTicketWithTickets) mData.get(oldItemPosition)).salesTicket.getId() == ((TicketEntity) data.get(newItemPosition)).getId();
+                    }
                     return false;
                 }
 
@@ -121,6 +125,14 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
                                 && Objects.equals(newTicket.getPriceWinter(), newTicket.getPriceWinter())
                                 && Objects.equals(newTicket.getDuration(), newTicket.getDuration());
 
+                    }
+                    if (mData instanceof SalesTicketWithTickets) {
+                        SalesTicketWithTickets salesTicketWithTickets = (SalesTicketWithTickets) data.get(newItemPosition);
+                        SalesTicketWithTickets oldSalesTicket = (SalesTicketWithTickets) mData.get(newItemPosition);
+                        return salesTicketWithTickets.salesTicket.getId()== oldSalesTicket.salesTicket.getId()
+                                && Objects.equals(salesTicketWithTickets.salesTicket.getLastname(), salesTicketWithTickets.salesTicket.getLastname())
+                                && Objects.equals(salesTicketWithTickets.salesTicket.getFirstname(), salesTicketWithTickets.salesTicket.getFirstname())
+                                && Objects.equals(salesTicketWithTickets.salesTicket.getBirthDate(), salesTicketWithTickets.salesTicket.getBirthDate());
                     }
                     return false;
                 }

@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.funpark.BaseApp;
 import com.example.funpark.database.entity.SalesTicketEntity;
 
+import com.example.funpark.database.pojo.SalesTicketWithTickets;
 import com.example.funpark.database.repository.SalesTicketRepository;
 
 import com.example.funpark.util.OnAsyncEventListener;
@@ -26,7 +27,7 @@ public class SalesTicketListViewModel extends AndroidViewModel {
     private SalesTicketRepository repository;
 
     // MediatorLiveData can observe other LiveData objects and react on their emissions.
-    private final MediatorLiveData<List<SalesTicketEntity>> observableSalesTickets;
+    private final MediatorLiveData<List<SalesTicketWithTickets>> observableSalesTicketsWithTickets;
 
     public SalesTicketListViewModel(@NonNull Application application,
                                SalesTicketRepository salesTicketRepository) {
@@ -36,15 +37,15 @@ public class SalesTicketListViewModel extends AndroidViewModel {
 
         repository = salesTicketRepository;
 
-        observableSalesTickets = new MediatorLiveData<>();
+        observableSalesTicketsWithTickets = new MediatorLiveData<>();
         // set by default null, until we get data from the database.
-        observableSalesTickets.setValue(null);
+        observableSalesTicketsWithTickets.setValue(null);
 
-        LiveData<List<SalesTicketEntity>> salesTickets =
-                salesTicketRepository.getSalesTickets(application);
+        LiveData<List<SalesTicketWithTickets>> salesTickets =
+                salesTicketRepository.getSalesTicketsWithTickets(application);
 
         // observe the changes of the entities from the database and forward them
-        observableSalesTickets.addSource(salesTickets, observableSalesTickets::setValue);
+        observableSalesTicketsWithTickets.addSource(salesTickets, observableSalesTicketsWithTickets::setValue);
     }
 
     /**
@@ -71,16 +72,8 @@ public class SalesTicketListViewModel extends AndroidViewModel {
     /**
      * Expose the LiveData VisitorAccounts query so the UI can observe it.
      */
-    public LiveData<List<SalesTicketEntity>> getSalesTickets() {
-        return observableSalesTickets;
-    }
-
-    /**
-     * Expose the LiveData AccountEntities query so the UI can observe it.
-     */
-
-    public void deleteSalesTicket(SalesTicketEntity salesTicket, OnAsyncEventListener callback) {
-        repository.delete(salesTicket, callback, application);
+    public LiveData<List<SalesTicketWithTickets>> getSalesTickets() {
+        return observableSalesTicketsWithTickets;
     }
 
 }
