@@ -1,9 +1,15 @@
 package com.example.funpark.database.entity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
+
+import com.example.funpark.ui.SettingsActivity;
 
 @Entity(tableName = "tickets", primaryKeys = {"id"}, foreignKeys =
     @ForeignKey(
@@ -92,5 +98,17 @@ public class TicketEntity {
 
     public void setTicketType(int ticketType) {
         this.ticketType = ticketType;
+    }
+
+    public String toString(Context context) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        String language = sharedPref.getString(SettingsActivity.KEY_PREF_LANGUAGE, "-1");
+        switch (language){
+            case "en":
+            default:
+                return  ticketNameEn;
+            case "fr":
+                return ticketNameFr;
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.funpark.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
 
     private List<T> mData;
     private RecyclerViewItemClickListener mListener;
+    private Context context;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -33,8 +35,9 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
         }
     }
 
-    public RecyclerAdapter(RecyclerViewItemClickListener listener) {
+    public RecyclerAdapter(RecyclerViewItemClickListener listener, Context context) {
         mListener = listener;
+        this.context = context;
     }
 
     @Override
@@ -57,7 +60,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
         if (item.getClass().equals(VisitorEntity.class))
             holder.mTextView.setText(((VisitorEntity) item).toString());
         if (item.getClass().equals(TicketEntity.class)){
-            holder.mTextView.setText(((TicketEntity) item).getTicketNameEn());
+            holder.mTextView.setText(((TicketEntity) item).toString(context));
         }
         if (item.getClass().equals(SalesTicketEntity.class)){
             holder.mTextView.setText(((SalesTicketEntity) item).getFirstname());

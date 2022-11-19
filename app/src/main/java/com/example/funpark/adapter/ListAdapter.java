@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.funpark.R;
+import com.example.funpark.database.entity.TicketTypeEntity;
 
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class ListAdapter<T> extends ArrayAdapter<T> {
         }
         T item = getItem(position);
         if (item != null) {
-            viewHolder.itemView.setText(item.toString());
+            viewHolder.itemView.setText(((TicketTypeEntity)item).toString(getContext()));
         }
         return convertView;
     }

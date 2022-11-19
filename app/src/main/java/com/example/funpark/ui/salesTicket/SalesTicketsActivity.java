@@ -71,7 +71,7 @@ public class SalesTicketsActivity extends AppCompatActivity {
             Log.d(TAG, "longClicked on: " + salesTickets.get(position).getId());
 
         }
-    });
+    }, this);
 
         SalesTicketListViewModel.Factory factory = new SalesTicketListViewModel.Factory(
                 getApplication());

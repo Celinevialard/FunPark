@@ -81,7 +81,7 @@ public class VisitorsActivity extends BaseActivity {
 
                 createDeleteDialog(position);
             }
-        });
+        }, this);
 
 
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
