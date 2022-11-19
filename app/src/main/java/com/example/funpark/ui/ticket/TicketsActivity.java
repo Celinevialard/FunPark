@@ -72,7 +72,7 @@ public class TicketsActivity extends BaseActivity {
             @Override
             public void onItemClick(View v, int position) {
                 Log.d(TAG, "clicked position:" + position);
-                Log.d(TAG, "clicked on: " + tickets.get(position).getTicketName());
+                Log.d(TAG, "clicked on: " + tickets.get(position).getTicketNameEn());
 
 
                 Intent intent = new Intent(TicketsActivity.this,TicketDetailActivity.class);
@@ -88,7 +88,7 @@ public class TicketsActivity extends BaseActivity {
             @Override
             public void onItemLongClick(View v, int position) {
                 Log.d(TAG, "longClicked position:" + position);
-                Log.d(TAG, "longClicked on: " + tickets.get(position).getTicketName());
+                Log.d(TAG, "longClicked on: " + tickets.get(position).getTicketNameEn());
 
                 createDeleteDialog(position);
             }
@@ -141,7 +141,7 @@ public class TicketsActivity extends BaseActivity {
         alertDialog.setCancelable(false);
 
         final TextView deleteMessage = view.findViewById(R.id.tv_delete_item);
-        deleteMessage.setText(String.format(getString(R.string.ticket_delete_msg), ticket.getTicketName()));
+        deleteMessage.setText(String.format(getString(R.string.ticket_delete_msg), ticket.getTicketNameEn()));
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), (dialog, which) -> {
             Toast toast = Toast.makeText(this, getString(R.string.ticket_deleted), Toast.LENGTH_LONG);

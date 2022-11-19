@@ -13,13 +13,14 @@ import com.example.funpark.database.dao.SalesTicketDao;
 import com.example.funpark.database.dao.TicketDao;
 import com.example.funpark.database.dao.TicketTypeDao;
 import com.example.funpark.database.dao.VisitorDao;
+import com.example.funpark.database.entity.SalesTicketEntity;
 import com.example.funpark.database.entity.TicketEntity;
 import com.example.funpark.database.entity.TicketTypeEntity;
 import com.example.funpark.database.entity.VisitorEntity;
 
 import java.util.concurrent.Executors;
 
-@Database(entities = {TicketTypeEntity.class, VisitorEntity.class, TicketEntity.class}, version = 1)
+@Database(entities = {TicketTypeEntity.class, VisitorEntity.class, TicketEntity.class, SalesTicketEntity.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String TAG = "AppDatabase";

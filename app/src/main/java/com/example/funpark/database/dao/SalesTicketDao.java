@@ -3,16 +3,16 @@ package com.example.funpark.database.dao;
 import android.database.sqlite.SQLiteConstraintException;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Update;
 
 import com.example.funpark.database.entity.SalesTicketEntity;
-import com.example.funpark.database.entity.TicketEntity;
+
 
 import java.util.List;
-
+@Dao
 public interface SalesTicketDao {
 
     @Query("SELECT * FROM salesTickets WHERE id=:id")
@@ -30,6 +30,4 @@ public interface SalesTicketDao {
     @Delete
     void delete(SalesTicketEntity salesTicket);
 
-    @Update
-    void update(SalesTicketEntity salesTicket);
 }

@@ -17,7 +17,8 @@ public class TicketEntity {
     @NonNull
     private int id;
 
-    private String ticketName;
+    private String ticketNameEn;
+    private String ticketNameFr;
     private double priceSummer;
     private double priceWinter;
     private int duration;
@@ -27,9 +28,10 @@ public class TicketEntity {
     public TicketEntity() {
     }
 
-    public TicketEntity(@NonNull int id, String ticketName, double priceSummer, double priceWinter, int duration, int ticketType) {
+    public TicketEntity(@NonNull int id, String ticketNameEn,String ticketNameFr, double priceSummer, double priceWinter, int duration, int ticketType) {
         this.id = id;
-        this.ticketName = ticketName;
+        this.ticketNameEn = ticketNameEn;
+        this.ticketNameFr = ticketNameFr;
         this.priceSummer = priceSummer;
         this.priceWinter = priceWinter;
         this.duration = duration;
@@ -44,12 +46,20 @@ public class TicketEntity {
         this.id = id;
     }
 
-    public String getTicketName() {
-        return ticketName;
+    public String getTicketNameEn() {
+        return ticketNameEn;
     }
 
-    public void setTicketName(String ticketName) {
-        this.ticketName = ticketName;
+    public void setTicketNameEn(String ticketNameEn) {
+        this.ticketNameEn = ticketNameEn;
+    }
+
+    public String getTicketNameFr() {
+        return ticketNameFr;
+    }
+
+    public void setTicketNameFr(String ticketNameFr) {
+        this.ticketNameFr = ticketNameFr;
     }
 
     public double getPriceSummer() {

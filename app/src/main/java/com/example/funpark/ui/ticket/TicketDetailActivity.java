@@ -35,7 +35,8 @@ private Toast statusToast;
 
 private boolean isEditable;
 
-    private EditText etTicketName;
+    private EditText etTicketNameEn;
+    private EditText etTicketNameFr;
     private EditText etPriceSummer;
     private EditText etPriceWinter;
     private EditText etDuration;
@@ -144,7 +145,8 @@ private TicketViewModel viewModel;
         }
         if (item.getItemId() == CREATE_TICKET) {
             createTicket(
-                    etTicketName.getText().toString(),
+                    etTicketNameEn.getText().toString(),
+                    etTicketNameFr.getText().toString(),
                     etPriceSummer.getText().toString(),
                     etPriceWinter.getText().toString(),
                     etDuration.getText().toString(),
@@ -157,14 +159,17 @@ private TicketViewModel viewModel;
 
     private void initiateView() {
         isEditable = false;
-        etTicketName = findViewById(R.id.ticketName);
+        etTicketNameEn = findViewById(R.id.ticketNameEn);
+        etTicketNameFr = findViewById(R.id.ticketNameFr);
         etPriceSummer = findViewById(R.id.priceSummer);
         etPriceWinter = findViewById(R.id.priceWinter);
         etDuration = findViewById(R.id.duration);
         spTicketType = findViewById(R.id.ticketType);
 
-        etTicketName.setFocusable(false);
-        etTicketName.setEnabled(false);
+        etTicketNameEn.setFocusable(false);
+        etTicketNameEn.setEnabled(false);
+        etTicketNameFr.setFocusable(false);
+        etTicketNameFr.setEnabled(false);
         etPriceSummer.setFocusable(false);
         etPriceSummer.setEnabled(false);
         etPriceWinter.setFocusable(false);
@@ -182,9 +187,13 @@ private TicketViewModel viewModel;
 
     private void switchEditableMode() {
         if (!isEditable) {
-            etTicketName.setFocusable(true);
-            etTicketName.setEnabled(true);
-            etTicketName.setFocusableInTouchMode(true);
+            etTicketNameEn.setFocusable(true);
+            etTicketNameEn.setEnabled(true);
+            etTicketNameEn.setFocusableInTouchMode(true);
+
+            etTicketNameFr.setFocusable(true);
+            etTicketNameFr.setEnabled(true);
+            etTicketNameFr.setFocusableInTouchMode(true);
 
             etPriceSummer.setFocusable(true);
             etPriceSummer.setEnabled(true);
@@ -202,10 +211,11 @@ private TicketViewModel viewModel;
             spTicketType.setEnabled(true);
             spTicketType.setFocusableInTouchMode(true);
 
-            etTicketName.requestFocus();
+            etTicketNameEn.requestFocus();
         } else {
             saveChanges(
-                    etTicketName.getText().toString(),
+                    etTicketNameEn.getText().toString(),
+                    etTicketNameFr.getText().toString(),
                     etPriceSummer.getText().toString(),
                     etPriceWinter.getText().toString(),
                     etDuration.getText().toString(),
@@ -213,8 +223,11 @@ private TicketViewModel viewModel;
 
 
             );
-            etTicketName.setFocusable(false);
-            etTicketName.setEnabled(false);
+            etTicketNameEn.setFocusable(false);
+            etTicketNameEn.setEnabled(false);
+
+            etTicketNameFr.setFocusable(false);
+            etTicketNameFr.setEnabled(false);
 
             etPriceSummer.setFocusable(false);
             etPriceSummer.setEnabled(false);
@@ -232,9 +245,10 @@ private TicketViewModel viewModel;
         isEditable = !isEditable;
     }
 
-    private void createTicket(String ticketname, String priceSummer, String priceWinter, String duration, int ticketType){
+    private void createTicket(String ticketnameEn, String ticketnameFr, String priceSummer, String priceWinter, String duration, int ticketType){
         ticket = new TicketEntity();
-        ticket.setTicketName(ticketname);
+        ticket.setTicketNameEn(ticketnameEn);
+        ticket.setTicketNameFr(ticketnameFr);
         ticket.setPriceSummer(Double.parseDouble(priceSummer));
         ticket.setPriceWinter(Double.parseDouble(priceWinter));
         ticket.setDuration(Integer.parseInt(duration));
@@ -254,9 +268,10 @@ private TicketViewModel viewModel;
         });
     }
 
-    private void saveChanges(String ticketname, String priceSummer, String priceWinter, String duration, int ticketType) {
+    private void saveChanges(String ticketnameEn, String ticketnameFr, String priceSummer, String priceWinter, String duration, int ticketType) {
 
-        ticket.setTicketName(ticketname);
+        ticket.setTicketNameEn(ticketnameEn);
+        ticket.setTicketNameFr(ticketnameFr);
         ticket.setPriceSummer(Double.parseDouble(priceSummer));
         ticket.setPriceWinter(Double.parseDouble(priceWinter));
         ticket.setDuration(Integer.parseInt(duration));
@@ -294,13 +309,8 @@ private TicketViewModel viewModel;
 
         if (ticket != null) {
 
-            //String test1 = String.valueOf(ticket.getPriceSummer());
-
-            //String test2 = String.valueOf(ticket.getPriceWinter());
-
-            //String test3 = String.valueOf(ticket.getDuration());
-
-            etTicketName.setText(ticket.getTicketName());
+            etTicketNameEn.setText(ticket.getTicketNameEn());
+            etTicketNameFr.setText(ticket.getTicketNameFr());
             etPriceSummer.setText(String.valueOf(ticket.getPriceSummer()));
             etPriceWinter.setText(String.valueOf(ticket.getPriceWinter()));
             etDuration.setText(String.valueOf(ticket.getDuration()));

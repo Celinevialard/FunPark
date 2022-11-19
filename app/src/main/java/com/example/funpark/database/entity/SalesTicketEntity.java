@@ -1,8 +1,12 @@
 package com.example.funpark.database.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
+import androidx.room.TypeConverters;
+
+import com.example.funpark.util.DateConverter;
 
 import java.util.Date;
 
@@ -13,12 +17,14 @@ import java.util.Date;
         childColumns = "ticket",
         onDelete = ForeignKey.CASCADE
 ))
+@TypeConverters(DateConverter.class)
 public class SalesTicketEntity {
 
+    @NonNull
     private int id;
 
-    private String firstname;
     private String lastname;
+    private String firstname;
     private Date birthDate;
     private int ticket;
 
@@ -26,10 +32,10 @@ public class SalesTicketEntity {
     public SalesTicketEntity() {
     }
 
-    public SalesTicketEntity(int id, String firstname, String lastname, Date birthDate, int ticket) {
+    public SalesTicketEntity(@NonNull int id, String lastname, String firstname, Date birthDate, int ticket) {
         this.id = id;
-        this.firstname = firstname;
         this.lastname = lastname;
+        this.firstname = firstname;
         this.birthDate = birthDate;
         this.ticket = ticket;
     }
@@ -42,20 +48,20 @@ public class SalesTicketEntity {
         this.id = id;
     }
 
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
     public String getLastname() {
         return lastname;
     }
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public Date getBirthDate() {

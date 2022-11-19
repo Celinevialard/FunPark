@@ -40,11 +40,12 @@
     <string name="visitDate">Date of the visit</string>
     <string name="ticketType">Type of ticket</string>
 
-    <string name="ticketName">TicketName</string>
+    <string name="ticketNameEn">TicketNameEn</string>
+    <string name="ticketNameFr">TicketNameFr</string>
     <string name="priceSummer">PriceSummer</string>
     <string name="priceWinter">PriceWinter</string>
     <string name="duration">Duration</string>
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
