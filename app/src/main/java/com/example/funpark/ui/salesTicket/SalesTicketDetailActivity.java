@@ -1,7 +1,9 @@
 package com.example.funpark.ui.salesTicket;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
@@ -10,6 +12,7 @@ import com.example.funpark.R;
 import com.example.funpark.adapter.DateAdapter;
 import com.example.funpark.database.pojo.SalesTicketWithTickets;
 import com.example.funpark.ui.BaseCustomerActivity;
+import com.example.funpark.util.QrHelper;
 import com.example.funpark.viewmodel.salesTicket.SalesTicketViewModel;
 
 /**
@@ -23,6 +26,7 @@ public class SalesTicketDetailActivity extends BaseCustomerActivity {
     private EditText etLastname;
     private EditText etBirthDate;
     private DateAdapter birthDate;
+    private ImageView imageView;
 
     private SalesTicketWithTickets salesTicket;
 
@@ -56,6 +60,7 @@ public class SalesTicketDetailActivity extends BaseCustomerActivity {
         etFirstname = findViewById(R.id.firstname);
         etLastname = findViewById(R.id.lastname);
         etBirthDate = findViewById(R.id.birthdate);
+        imageView = findViewById(R.id.QrTicket);
 
         etTicket.setFocusable(false);
         etTicket.setEnabled(false);
@@ -80,6 +85,8 @@ public class SalesTicketDetailActivity extends BaseCustomerActivity {
             birthDate = new DateAdapter(salesTicket.salesTicket.getBirthDate());
 
             etBirthDate.setText(birthDate.toString());
+            Bitmap mBitmap = QrHelper.generate(salesTicket.salesTicket);
+            imageView.setImageBitmap(mBitmap);
 
         }
 
