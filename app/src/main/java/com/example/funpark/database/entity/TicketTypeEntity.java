@@ -9,10 +9,11 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 
 import com.example.funpark.ui.SettingsActivity;
+import com.example.funpark.util.IEntityBase;
 import com.example.funpark.util.PreferenceHelper;
 
 @Entity(tableName = "tickettypes", primaryKeys = {"id"})
-public class TicketTypeEntity{
+public class TicketTypeEntity implements IEntityBase {
 
     @NonNull
     private int id;
@@ -55,6 +56,7 @@ public class TicketTypeEntity{
         this.nameFr = nameFr;
     }
 
+    @Override
     public String toString(Context context) {
         String language = PreferenceHelper.getLanguage(context);
         switch (language){

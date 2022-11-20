@@ -11,11 +11,13 @@
     <string name="title_activity_tickets">Billets</string>
     <string name="title_activity_settings">Paramètre</string>
     <string name="title_activity_delete_visitor">Supprimer visiteur</string>
-    <string name="title_activity_visitor_details">Details visiteur</string>
+    <string name="title_activity_visitor_details">Détails visiteur</string>
     <string name="title_activity_create_visitor">Créer visiteur</string>
     <string name="title_activity_delete_ticket">Supprimer billet</string>
-    <string name="title_activity_ticket_details">Details billet</string>
+    <string name="title_activity_ticket_details">Détails billet</string>
     <string name="title_activity_create_ticket">Créer billet</string>
+    <string name="title_activity_salestickets">Billets acheté</string>
+    <string name="title_activity_saleticket">Détails billet acheté</string>
 
     <string name="action_settings">Paramètre</string>
     <string name="settings_dark_mode">Mode nuit</string>

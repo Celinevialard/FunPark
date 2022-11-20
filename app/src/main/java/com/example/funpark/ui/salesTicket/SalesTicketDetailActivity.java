@@ -1,17 +1,16 @@
 package com.example.funpark.ui.salesTicket;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 import com.example.funpark.R;
-import com.example.funpark.ui.BaseActivity;
+import com.example.funpark.ui.BaseCustomerActivity;
 
-public class SalesTicketDetailActivity extends BaseActivity {
+public class SalesTicketDetailActivity extends BaseCustomerActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sales_ticket_detail);
+        getLayoutInflater().inflate(R.layout.activity_sales_ticket_detail, frameLayout);
+        setTitle(R.string.title_activity_settings);
     }
 }

@@ -8,12 +8,12 @@ import com.example.funpark.R;
 import com.example.funpark.ui.salesTicket.SalesTicketsActivity;
 import com.example.funpark.ui.visitor.VisitorsActivity;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseCustomerActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        getLayoutInflater().inflate(R.layout.activity_main, frameLayout);
         Button adminBtn = findViewById(R.id.btnAdmin);
         adminBtn.setOnClickListener(view -> {
             runAdmin();

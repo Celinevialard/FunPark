@@ -1,5 +1,7 @@
 package com.example.funpark.database.entity;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -7,6 +9,7 @@ import androidx.room.Ignore;
 import androidx.room.TypeConverters;
 
 import com.example.funpark.util.DateConverter;
+import com.example.funpark.util.IEntityBase;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,7 +21,7 @@ import java.util.Date;
             childColumns = "ticketType"
     ))
 @TypeConverters(DateConverter.class)
-public class VisitorEntity {
+public class VisitorEntity implements IEntityBase {
 
     @NonNull
     private int id;
@@ -93,5 +96,10 @@ public class VisitorEntity {
     public String toString() {
         SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
         return lastName + " " + firstName + " " + format.format(visitDate);
+    }
+
+    @Override
+    public String toString(Context context) {
+        return toString();
     }
 }

@@ -13,6 +13,7 @@ import com.example.funpark.database.entity.SalesTicketEntity;
 import com.example.funpark.database.entity.TicketEntity;
 import com.example.funpark.database.entity.VisitorEntity;
 import com.example.funpark.database.pojo.SalesTicketWithTickets;
+import com.example.funpark.util.IEntityBase;
 import com.example.funpark.util.RecyclerViewItemClickListener;
 
 import java.util.List;
@@ -58,14 +59,8 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         T item = mData.get(position);
-        if (item.getClass().equals(VisitorEntity.class))
-            holder.mTextView.setText(((VisitorEntity) item).toString());
-        if (item.getClass().equals(TicketEntity.class)){
-            holder.mTextView.setText(((TicketEntity) item).toString(context));
-        }
-        if (item.getClass().equals(SalesTicketWithTickets.class)){
-            holder.mTextView.setText(((SalesTicketWithTickets) item).toString());
-        }
+        if (item instanceof IEntityBase)
+            holder.mTextView.setText(((IEntityBase) item).toString(context));
     }
 
     @Override
