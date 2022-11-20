@@ -7,13 +7,17 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Transaction;
 
 import com.example.funpark.database.entity.SalesTicketEntity;
 import com.example.funpark.database.pojo.SalesTicketWithTickets;
 
-
 import java.util.List;
+
+/**
+ * DAO qui permet de faire les actions nécessaire
+ * dans la base de donnée pour les billets vendu
+ */
+//TODO enlever les méthodes inutil
 @Dao
 public interface SalesTicketDao {
 

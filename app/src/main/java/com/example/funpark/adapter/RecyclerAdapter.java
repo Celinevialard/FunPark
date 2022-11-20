@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.funpark.R;
-import com.example.funpark.database.entity.SalesTicketEntity;
 import com.example.funpark.database.entity.TicketEntity;
 import com.example.funpark.database.entity.VisitorEntity;
 import com.example.funpark.database.pojo.SalesTicketWithTickets;
@@ -19,6 +18,11 @@ import com.example.funpark.util.RecyclerViewItemClickListener;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * classe qui permet d'afficher les listes dans une liste
+ *
+ * @param <T>
+ */
 public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     private List<T> mData;
@@ -26,11 +30,9 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
     private Context context;
 
     // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
     static class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
         TextView mTextView;
+
         ViewHolder(TextView textView) {
             super(textView);
             mTextView = textView;
@@ -107,7 +109,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
                     if (mData instanceof VisitorEntity) {
                         VisitorEntity newVisitor = (VisitorEntity) data.get(newItemPosition);
                         VisitorEntity oldVisitor = (VisitorEntity) mData.get(newItemPosition);
-                        return newVisitor.getId()== oldVisitor.getId()
+                        return newVisitor.getId() == oldVisitor.getId()
                                 && Objects.equals(newVisitor.getFirstName(), newVisitor.getFirstName())
                                 && Objects.equals(newVisitor.getLastName(), newVisitor.getLastName())
                                 && Objects.equals(newVisitor.getBirthDate(), newVisitor.getBirthDate())
@@ -116,7 +118,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
                     if (mData instanceof TicketEntity) {
                         TicketEntity newTicket = (TicketEntity) data.get(newItemPosition);
                         TicketEntity oldTicket = (TicketEntity) mData.get(newItemPosition);
-                        return newTicket.getId()== oldTicket.getId()
+                        return newTicket.getId() == oldTicket.getId()
                                 && Objects.equals(newTicket.getTicketNameEn(), newTicket.getTicketNameEn())
                                 && Objects.equals(newTicket.getTicketNameFr(), newTicket.getTicketNameFr())
                                 && Objects.equals(newTicket.getPriceSummer(), newTicket.getPriceSummer())
@@ -127,7 +129,7 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
                     if (mData instanceof SalesTicketWithTickets) {
                         SalesTicketWithTickets salesTicketWithTickets = (SalesTicketWithTickets) data.get(newItemPosition);
                         SalesTicketWithTickets oldSalesTicket = (SalesTicketWithTickets) mData.get(newItemPosition);
-                        return salesTicketWithTickets.salesTicket.getId()== oldSalesTicket.salesTicket.getId()
+                        return salesTicketWithTickets.salesTicket.getId() == oldSalesTicket.salesTicket.getId()
                                 && Objects.equals(salesTicketWithTickets.salesTicket.getLastname(), salesTicketWithTickets.salesTicket.getLastname())
                                 && Objects.equals(salesTicketWithTickets.salesTicket.getFirstname(), salesTicketWithTickets.salesTicket.getFirstname())
                                 && Objects.equals(salesTicketWithTickets.salesTicket.getBirthDate(), salesTicketWithTickets.salesTicket.getBirthDate());

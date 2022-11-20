@@ -7,6 +7,9 @@ import com.example.funpark.BaseApp;
 import com.example.funpark.database.entity.VisitorEntity;
 import com.example.funpark.util.OnAsyncEventListener;
 
+/***
+ * Permet de supprimer un visiteur en background
+ */
 public class DeleteVisitor extends AsyncTask<VisitorEntity, Void, Void> {
 
     private Application application;

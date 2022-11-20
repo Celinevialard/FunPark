@@ -6,7 +6,9 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.room.*;
+import androidx.room.Database;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.funpark.database.dao.SalesTicketDao;
@@ -20,6 +22,9 @@ import com.example.funpark.database.entity.VisitorEntity;
 
 import java.util.concurrent.Executors;
 
+/**
+ * Base de donnée Room qui stocket les données en local sur le téléphone
+ */
 @Database(entities = {TicketTypeEntity.class, VisitorEntity.class, TicketEntity.class, SalesTicketEntity.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -30,8 +35,11 @@ public abstract class AppDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "funpark-database";
 
     public abstract TicketTypeDao ticketTypeDao();
+
     public abstract VisitorDao visitorDao();
+
     public abstract TicketDao ticketDao();
+
     public abstract SalesTicketDao salesTicketDao();
 
     private final MutableLiveData<Boolean> isDatabaseCreated = new MutableLiveData<>();
@@ -95,7 +103,7 @@ public abstract class AppDatabase extends RoomDatabase {
         }
     }
 
-    private void setDatabaseCreated(){
+    private void setDatabaseCreated() {
         isDatabaseCreated.postValue(true);
     }
 

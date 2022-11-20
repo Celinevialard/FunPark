@@ -10,8 +10,9 @@ import com.example.funpark.database.entity.TicketEntity;
 import com.example.funpark.util.IEntityBase;
 import com.example.funpark.util.PreferenceHelper;
 
-import java.util.List;
-
+/**
+ * Classe qui contient le billet vendu avec le billet qui a été acheté
+ */
 public class SalesTicketWithTickets implements IEntityBase {
     @Embedded
     public SalesTicketEntity salesTicket;
@@ -22,12 +23,12 @@ public class SalesTicketWithTickets implements IEntityBase {
     @Override
     public String toString(Context context) {
         String language = PreferenceHelper.getLanguage(context);
-        switch (language){
+        switch (language) {
             case "en":
             default:
-                return salesTicket.getFirstname()+" "+ticket.getTicketNameEn();
+                return salesTicket.getFirstname() + " " + ticket.getTicketNameEn();
             case "fr":
-                return salesTicket.getFirstname()+" "+ticket.getTicketNameFr();
+                return salesTicket.getFirstname() + " " + ticket.getTicketNameFr();
         }
     }
 }

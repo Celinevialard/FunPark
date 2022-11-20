@@ -16,14 +16,17 @@ import com.example.funpark.util.OnAsyncEventListener;
 
 import java.util.List;
 
-
+/**
+ * Classe pour gérer l'interaction entre l'affichage de la liste des visiteurs
+ * et la récupération de ses données
+ */
 public class VisitorListViewModel extends AndroidViewModel {
 
     private Application application;
 
     private VisitorRepository repository;
 
-    // MediatorLiveData can observe other LiveData objects and react on their emissions.
+    // Objet qui réagit lors de la mise à jour de ses objets
     private final MediatorLiveData<List<VisitorEntity>> observableVisitors;
 
     public VisitorListViewModel(@NonNull Application application,
@@ -46,7 +49,7 @@ public class VisitorListViewModel extends AndroidViewModel {
     }
 
     /**
-     * A creator is used to inject the account id into the ViewModel
+     * Classe factory qui permet de crée qu'une seul fois l'instance
      */
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
@@ -69,14 +72,17 @@ public class VisitorListViewModel extends AndroidViewModel {
     }
 
     /**
-     * Expose the LiveData VisitorAccounts query so the UI can observe it.
+     * Permet à l'UI d'atteindre la liste des visiteurs.
+     * @return
      */
     public LiveData<List<VisitorEntity>> getVisitors() {
         return observableVisitors;
     }
 
     /**
-     * Expose the LiveData AccountEntities query so the UI can observe it.
+     * Permet de supprimer un visiteur
+     * @param visitor
+     * @param callback
      */
     public void deleteVisitor(VisitorEntity visitor, OnAsyncEventListener callback) {
         repository.delete(visitor, callback, application);

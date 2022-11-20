@@ -7,6 +7,9 @@ import com.example.funpark.BaseApp;
 import com.example.funpark.database.entity.TicketEntity;
 import com.example.funpark.util.OnAsyncEventListener;
 
+/***
+ * Permet de créer un ticket en background
+ */
 public class CreateTicket extends AsyncTask<TicketEntity, Void, Void> {
 
     private Application application;
@@ -20,11 +23,11 @@ public class CreateTicket extends AsyncTask<TicketEntity, Void, Void> {
 
     @Override
     protected Void doInBackground(TicketEntity... params) {
-        try{
-            for(TicketEntity ticket : params)
+        try {
+            for (TicketEntity ticket : params)
                 ((BaseApp) application).getDatabase().ticketDao()
                         .insert(ticket);
-        } catch(Exception e){
+        } catch (Exception e) {
             exception = e;
         }
         return null;

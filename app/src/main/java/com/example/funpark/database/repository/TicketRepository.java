@@ -1,7 +1,6 @@
 package com.example.funpark.database.repository;
 
 import android.app.Application;
-import android.util.Pair;
 
 import androidx.lifecycle.LiveData;
 
@@ -14,6 +13,9 @@ import com.example.funpark.util.OnAsyncEventListener;
 
 import java.util.List;
 
+/**
+ * Gestion de la relation avec la base de donnée pour les billets
+ */
 public class TicketRepository {
 
     private static TicketRepository instance;

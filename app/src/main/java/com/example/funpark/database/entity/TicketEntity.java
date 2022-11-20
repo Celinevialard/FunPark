@@ -1,25 +1,25 @@
 package com.example.funpark.database.entity;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
-import androidx.preference.PreferenceManager;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 
-import com.example.funpark.ui.SettingsActivity;
 import com.example.funpark.util.IEntityBase;
 import com.example.funpark.util.PreferenceHelper;
 
+/***
+ * Classe qui contient les tickets qui peuvent être vendu
+ */
 @Entity(tableName = "tickets", primaryKeys = {"id"}, foreignKeys =
-    @ForeignKey(
-            entity = TicketTypeEntity.class,
-            parentColumns = "id",
-            childColumns = "ticketType",
-            onDelete = ForeignKey.CASCADE
-    ))
+@ForeignKey(
+        entity = TicketTypeEntity.class,
+        parentColumns = "id",
+        childColumns = "ticketType",
+        onDelete = ForeignKey.CASCADE
+))
 public class TicketEntity implements IEntityBase {
 
     @NonNull
@@ -36,7 +36,7 @@ public class TicketEntity implements IEntityBase {
     public TicketEntity() {
     }
 
-    public TicketEntity(@NonNull int id, String ticketNameEn,String ticketNameFr, double priceSummer, double priceWinter, int duration, int ticketType) {
+    public TicketEntity(@NonNull int id, String ticketNameEn, String ticketNameFr, double priceSummer, double priceWinter, int duration, int ticketType) {
         this.id = id;
         this.ticketNameEn = ticketNameEn;
         this.ticketNameFr = ticketNameFr;
@@ -105,10 +105,10 @@ public class TicketEntity implements IEntityBase {
     @Override
     public String toString(Context context) {
         String language = PreferenceHelper.getLanguage(context);
-        switch (language){
+        switch (language) {
             case "en":
             default:
-                return  ticketNameEn;
+                return ticketNameEn;
             case "fr":
                 return ticketNameFr;
         }

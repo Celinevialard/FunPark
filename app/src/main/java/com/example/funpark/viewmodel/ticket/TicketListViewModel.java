@@ -16,13 +16,17 @@ import com.example.funpark.util.OnAsyncEventListener;
 
 import java.util.List;
 
+/**
+ * Classe pour gérer l'interaction entre l'affichage de la liste des billets
+ * et la récupération de ses données
+ */
 public class TicketListViewModel extends AndroidViewModel {
 
     private Application application;
 
     private TicketRepository repository;
 
-    // MediatorLiveData can observe other LiveData objects and react on their emissions.
+    // Objet qui réagit lors de la mise à jour de ses objets
     private final MediatorLiveData<List<TicketEntity>> observableTickets;
 
     public TicketListViewModel(@NonNull Application application,
@@ -45,7 +49,7 @@ public class TicketListViewModel extends AndroidViewModel {
     }
 
     /**
-     * A creator is used to inject the account id into the ViewModel
+     * Classe factory qui permet de crée qu'une seul fois l'instance
      */
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
@@ -66,16 +70,18 @@ public class TicketListViewModel extends AndroidViewModel {
     }
 
     /**
-     * Expose the LiveData VisitorAccounts query so the UI can observe it.
+     * Permet à l'UI d'atteindre la liste des tickets.
+     * @return la liste des tickets
      */
     public LiveData<List<TicketEntity>> getTickets() {
         return observableTickets;
     }
 
     /**
-     * Expose the LiveData AccountEntities query so the UI can observe it.
+     * Permet de supprimer un ticket
+     * @param ticket
+     * @param callback
      */
-
     public void deleteTicket(TicketEntity ticket, OnAsyncEventListener callback) {
         repository.delete(ticket, callback, application);
     }

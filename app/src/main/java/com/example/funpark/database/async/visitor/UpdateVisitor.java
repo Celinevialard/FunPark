@@ -7,6 +7,9 @@ import com.example.funpark.BaseApp;
 import com.example.funpark.database.entity.VisitorEntity;
 import com.example.funpark.util.OnAsyncEventListener;
 
+/***
+ * Permet de mettre à jour un visiteur en background
+ */
 public class UpdateVisitor extends AsyncTask<VisitorEntity, Void, Void> {
 
     private Application application;

@@ -1,7 +1,7 @@
 package com.example.funpark.util;
 
 /**
- * This generic interface is used as custom callback for async tasks..
+ * Interface pour les taches asynchrone.
  */
 public interface OnAsyncEventListener {
     void onSuccess();

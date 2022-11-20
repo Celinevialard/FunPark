@@ -5,13 +5,17 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 
 import com.example.funpark.BaseApp;
-import com.example.funpark.database.async.visitor.*;
+import com.example.funpark.database.async.visitor.CreateVisitor;
+import com.example.funpark.database.async.visitor.DeleteVisitor;
+import com.example.funpark.database.async.visitor.UpdateVisitor;
 import com.example.funpark.database.entity.VisitorEntity;
 import com.example.funpark.util.OnAsyncEventListener;
 
 import java.util.List;
 
-
+/**
+ * Gestion de la relation avec la base de donnée pour les visiteurs
+ */
 public class VisitorRepository {
 
     private static VisitorRepository instance;

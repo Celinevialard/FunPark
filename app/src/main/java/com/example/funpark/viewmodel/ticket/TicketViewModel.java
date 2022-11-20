@@ -19,6 +19,10 @@ import com.example.funpark.util.OnAsyncEventListener;
 
 import java.util.List;
 
+/**
+ * Classe pour gérer l'interaction entre l'affichage d'un billet
+ * et la récupération de ses données
+ */
 public class TicketViewModel  extends AndroidViewModel {
 
     private Application application;
@@ -26,8 +30,7 @@ public class TicketViewModel  extends AndroidViewModel {
     private TicketRepository repository;
     private final TicketTypeRepository repositoryTicketType;
 
-
-    // MediatorLiveData can observe other LiveData objects and react on their emissions.
+    // Objet qui réagit lors de la mise à jour de ses objets
     private final MediatorLiveData<TicketEntity> observableTicket;
 
     public TicketViewModel(@NonNull Application application,
@@ -51,7 +54,7 @@ public class TicketViewModel  extends AndroidViewModel {
     }
 
     /**
-     * A creator is used to inject the account id into the ViewModel
+     * Classe factory qui permet de crée qu'une seul fois l'instance
      */
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
@@ -78,24 +81,44 @@ public class TicketViewModel  extends AndroidViewModel {
     }
 
     /**
-     * Expose the LiveData AccountEntity query so the UI can observe it.
+     * Permet à l'UI d'atteindre le ticket.
+     * @return le ticket du context
      */
     public LiveData<TicketEntity> getTicket() {
         return observableTicket;
     }
 
+    /**
+     * Permet à l'UI de demander la création d'un ticket.
+     * @param ticket
+     * @param callback
+     */
     public void createTicket(TicketEntity ticket, OnAsyncEventListener callback) {
         repository.insert(ticket, callback, application);
     }
 
+    /**
+     * Permet à l'UI de demander la mise à jour d'un ticket.
+     * @param ticket
+     * @param callback
+     */
     public void updateTicket(TicketEntity ticket, OnAsyncEventListener callback) {
         repository.update(ticket, callback, application);
     }
 
+    /**
+     * Permet de supprimer un ticket
+     * @param ticket
+     * @param callback
+     */
     public void deleteTicket(TicketEntity ticket, OnAsyncEventListener callback) {
         repository.delete(ticket, callback, application);
     }
 
+    /**
+     * Permet à l'UI d'atteindre la liste des types tickets pour le spinner
+     * @return
+     */
     public LiveData<List<TicketTypeEntity>> getTicketTypes() {
         return repositoryTicketType.getTicketTypes(application);
     }

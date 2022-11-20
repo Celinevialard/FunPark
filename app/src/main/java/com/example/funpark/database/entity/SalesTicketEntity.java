@@ -10,6 +10,9 @@ import com.example.funpark.util.DateConverter;
 
 import java.util.Date;
 
+/***
+ * classe qui contient les tickets achetés par un utilisateur du park
+ */
 @Entity(tableName = "salesTickets", primaryKeys = {"id"}, foreignKeys =
 @ForeignKey(
         entity = TicketEntity.class,

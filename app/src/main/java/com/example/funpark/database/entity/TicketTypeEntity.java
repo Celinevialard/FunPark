@@ -1,17 +1,17 @@
 package com.example.funpark.database.entity;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
-import androidx.preference.PreferenceManager;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 
-import com.example.funpark.ui.SettingsActivity;
 import com.example.funpark.util.IEntityBase;
 import com.example.funpark.util.PreferenceHelper;
 
+/**
+ * Classe qui contient les types de ticket qu'on peut avoir par exemple pour adulte, enfant,...
+ */
 @Entity(tableName = "tickettypes", primaryKeys = {"id"})
 public class TicketTypeEntity implements IEntityBase {
 
@@ -23,7 +23,7 @@ public class TicketTypeEntity implements IEntityBase {
     private String nameFr;
 
     @Ignore
-    public TicketTypeEntity(){
+    public TicketTypeEntity() {
     }
 
     public TicketTypeEntity(@NonNull int id, String nameEn, String nameFr) {
@@ -59,10 +59,10 @@ public class TicketTypeEntity implements IEntityBase {
     @Override
     public String toString(Context context) {
         String language = PreferenceHelper.getLanguage(context);
-        switch (language){
+        switch (language) {
             case "en":
             default:
-                return  nameEn;
+                return nameEn;
             case "fr":
                 return nameFr;
         }

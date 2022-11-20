@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Build;
-import android.widget.Toast;
 
 import androidx.preference.PreferenceManager;
 
@@ -17,9 +16,12 @@ import com.example.funpark.ui.SettingsActivity;
 
 import java.util.Locale;
 
+/**
+ * Helper qui permet de géré les préférences
+ */
 public class PreferenceHelper {
 
-    public static void checkPreferences(Context context){
+    public static void checkPreferences(Context context) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         Boolean darkMode = sharedPref.getBoolean(SettingsActivity.KEY_PREF_DARKMODE_SWITCH, false);
         String language = sharedPref.getString(SettingsActivity.KEY_PREF_LANGUAGE, "-1");

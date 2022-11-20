@@ -21,6 +21,10 @@ import java.io.Console;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe pour gérer l'interaction entre l'affichage d'un visiteur
+ * et la récupération de ses données
+ */
 public class VisitorViewModel extends AndroidViewModel {
 
     private Application application;
@@ -29,7 +33,7 @@ public class VisitorViewModel extends AndroidViewModel {
     private final TicketTypeRepository repositoryTicketType;
 
 
-    // MediatorLiveData can observe other LiveData objects and react on their emissions.
+    // Objet qui réagit lors de la mise à jour de ses objets
     private final MediatorLiveData<VisitorEntity> observableVisitor;
 
     public VisitorViewModel(@NonNull Application application,
@@ -53,7 +57,7 @@ public class VisitorViewModel extends AndroidViewModel {
     }
 
     /**
-     * A creator is used to inject the account id into the ViewModel
+     * Classe factory qui permet de crée qu'une seul fois l'instance
      */
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
@@ -80,24 +84,44 @@ public class VisitorViewModel extends AndroidViewModel {
     }
 
     /**
-     * Expose the LiveData AccountEntity query so the UI can observe it.
+     * Permet à l'UI d'atteindre le visiteur.
+     * @return
      */
     public LiveData<VisitorEntity> getVisitor() {
         return observableVisitor;
     }
 
+    /**
+     * Permet à l'UI de demander la création d'un visiteur.
+     * @param visitor
+     * @param callback
+     */
     public void createVisitor(VisitorEntity visitor, OnAsyncEventListener callback) {
         repository.insert(visitor, callback, application);
     }
 
+    /**
+     * Permet à l'UI de demander la mise à jour d'un visiteur
+     * @param visitor
+     * @param callback
+     */
     public void updateVisitor(VisitorEntity visitor, OnAsyncEventListener callback) {
         repository.update(visitor, callback, application);
     }
 
+    /**
+     * Permet de supprimer un visiteur
+     * @param visitor
+     * @param callback
+     */
     public void deleteVisitor(VisitorEntity visitor, OnAsyncEventListener callback) {
         repository.delete(visitor, callback, application);
     }
 
+    /**
+     * Permet à l'UI d'atteindre la liste des types tickets pour le spinner
+     * @return
+     */
     public LiveData<List<TicketTypeEntity>> getTicketTypes() {
         return repositoryTicketType.getTicketTypes(application);
     }

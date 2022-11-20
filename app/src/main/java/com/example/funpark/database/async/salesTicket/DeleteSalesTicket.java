@@ -5,9 +5,11 @@ import android.os.AsyncTask;
 
 import com.example.funpark.BaseApp;
 import com.example.funpark.database.entity.SalesTicketEntity;
-
 import com.example.funpark.util.OnAsyncEventListener;
 
+/***
+ * Permet de supprimer un ticket vendu en background
+ */
 public class DeleteSalesTicket extends AsyncTask<SalesTicketEntity, Void, Void> {
 
     private Application application;

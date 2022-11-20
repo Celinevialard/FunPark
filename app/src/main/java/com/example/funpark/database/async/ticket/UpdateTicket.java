@@ -5,9 +5,11 @@ import android.os.AsyncTask;
 
 import com.example.funpark.BaseApp;
 import com.example.funpark.database.entity.TicketEntity;
-import com.example.funpark.database.entity.VisitorEntity;
 import com.example.funpark.util.OnAsyncEventListener;
 
+/***
+ * Permet de mettre à jour un ticket en background
+ */
 public class UpdateTicket extends AsyncTask<TicketEntity, Void, Void> {
 
     private Application application;

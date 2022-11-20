@@ -13,6 +13,10 @@ import com.example.funpark.database.entity.TicketEntity;
 
 import java.util.List;
 
+/**
+ * DAO qui permet de faire les actions nécessaire
+ * dans la base de donnée pour les billets
+ */
 @Dao
 public interface TicketDao {
 
@@ -33,6 +37,6 @@ public interface TicketDao {
 
     @Update
     void update(TicketEntity ticket);
-    
+
 }
 

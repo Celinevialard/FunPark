@@ -15,7 +15,8 @@ import com.example.funpark.database.entity.VisitorEntity;
 import java.util.List;
 
 /**
- * https://developer.android.com/topic/libraries/architecture/room.html#no-object-references
+ * DAO qui permet de faire les actions nécessaire
+ * dans la base de donnée pour les visiteur
  */
 @Dao
 public interface VisitorDao {

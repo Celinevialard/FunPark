@@ -12,11 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.funpark.R;
-import com.example.funpark.database.entity.TicketTypeEntity;
+import com.example.funpark.util.IEntityBase;
 
 import java.util.List;
 
-
+/**
+ * classe qui permet d'afficher les listes dans les fomrulaires
+ *
+ * @param <T> choix du type dans la liste
+ */
 public class ListAdapter<T> extends ArrayAdapter<T> {
 
     private int mResource;
@@ -58,8 +62,8 @@ public class ListAdapter<T> extends ArrayAdapter<T> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         T item = getItem(position);
-        if (item != null) {
-            viewHolder.itemView.setText(((TicketTypeEntity)item).toString(getContext()));
+        if (item != null && item instanceof IEntityBase) {
+            viewHolder.itemView.setText(((IEntityBase) item).toString(getContext()));
         }
         return convertView;
     }

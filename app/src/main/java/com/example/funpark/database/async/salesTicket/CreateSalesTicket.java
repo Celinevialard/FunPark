@@ -5,9 +5,11 @@ import android.os.AsyncTask;
 
 import com.example.funpark.BaseApp;
 import com.example.funpark.database.entity.SalesTicketEntity;
-
 import com.example.funpark.util.OnAsyncEventListener;
 
+/***
+ * Permet de créer un ticket vendu en background
+ */
 public class CreateSalesTicket extends AsyncTask<SalesTicketEntity, Void, Void> {
 
 
@@ -22,11 +24,11 @@ public class CreateSalesTicket extends AsyncTask<SalesTicketEntity, Void, Void> 
 
     @Override
     protected Void doInBackground(SalesTicketEntity... params) {
-        try{
-            for(SalesTicketEntity salesTicket : params)
+        try {
+            for (SalesTicketEntity salesTicket : params)
                 ((BaseApp) application).getDatabase().salesTicketDao()
                         .insert(salesTicket);
-        } catch(Exception e){
+        } catch (Exception e) {
             exception = e;
         }
         return null;

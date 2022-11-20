@@ -14,12 +14,16 @@ import com.example.funpark.util.IEntityBase;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Classe qui contient les visiteurs -> la date de leur visite
+ * ainsi que d'autre information pour faire des statistiques
+ */
 @Entity(tableName = "visitors", primaryKeys = {"id"}, foreignKeys =
-    @ForeignKey(
-            entity = TicketTypeEntity.class,
-            parentColumns = "id",
-            childColumns = "ticketType"
-    ))
+@ForeignKey(
+        entity = TicketTypeEntity.class,
+        parentColumns = "id",
+        childColumns = "ticketType"
+))
 @TypeConverters(DateConverter.class)
 public class VisitorEntity implements IEntityBase {
 
@@ -31,8 +35,9 @@ public class VisitorEntity implements IEntityBase {
     private Date birthDate;
     private int ticketType;
     private Date visitDate;
+
     @Ignore
-    public VisitorEntity(){
+    public VisitorEntity() {
     }
 
     public VisitorEntity(@NonNull int id, String lastName, String firstName, Date birthDate, int ticketType, Date visitDate) {
