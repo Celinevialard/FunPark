@@ -14,8 +14,8 @@ import com.example.funpark.database.entity.TicketEntity;
 import java.util.List;
 
 /**
- * DAO qui permet de faire les actions nécessaire
- * dans la base de donnée pour les billets
+ * DAO qui permet de faire les actions nécessaires
+ * dans la base de données pour les billets
  */
 @Dao
 public interface TicketDao {

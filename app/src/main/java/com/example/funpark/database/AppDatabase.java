@@ -23,7 +23,7 @@ import com.example.funpark.database.entity.VisitorEntity;
 import java.util.concurrent.Executors;
 
 /**
- * Base de donnée Room qui stocket les données en local sur le téléphone
+ * Base de données Room qui stocke les données en local sur le téléphone
  */
 @Database(entities = {TicketTypeEntity.class, VisitorEntity.class, TicketEntity.class, SalesTicketEntity.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {

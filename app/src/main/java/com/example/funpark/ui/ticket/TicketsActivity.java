@@ -33,6 +33,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Activité pour afficher la liste des tickets
+ * Permet la suppression d'un ticket
+ */
+
 public class TicketsActivity extends BaseActivity {
 
     private static final String TAG = "TicketsActivity";
@@ -51,11 +56,6 @@ public class TicketsActivity extends BaseActivity {
 
         RecyclerView recyclerView = findViewById(R.id.ticketRecyclerView);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        //mRecyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -63,18 +63,10 @@ public class TicketsActivity extends BaseActivity {
                 LinearLayoutManager.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-        // TODO
-        //SharedPreferences settings = getSharedPreferences(BaseActivity.PREFS_NAME, 0);
-        //String user = settings.getString(BaseActivity.PREFS_USER, null);
-
         tickets = new ArrayList<>();
         adapter = new RecyclerAdapter<>(new RecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                Log.d(TAG, "clicked position:" + position);
-                Log.d(TAG, "clicked on: " + tickets.get(position).getTicketNameEn());
-
-
                 Intent intent = new Intent(TicketsActivity.this,TicketDetailActivity.class);
                 intent.setFlags(
                         Intent.FLAG_ACTIVITY_NO_ANIMATION |
@@ -94,7 +86,7 @@ public class TicketsActivity extends BaseActivity {
             }
         }, this);
 
-
+        // bouton pour ajouter un ticket
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(view -> {
                     Intent intent = new Intent(TicketsActivity.this, TicketDetailActivity.class);
@@ -125,13 +117,15 @@ public class TicketsActivity extends BaseActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
             return false;
         }
-        /*
-        The activity has to be finished manually in order to guarantee the navigation hierarchy working.
-        */
+        //mettre fin manuellement à l'activité en cours
         finish();
         return super.onNavigationItemSelected(item);
     }
-
+    /**
+     * Créer une boite de dialog pour valider la suppression d'un ticket
+     *
+     * @param position
+     */
     private void createDeleteDialog(final int position) {
         final TicketEntity ticket = tickets.get(position);
         LayoutInflater inflater = LayoutInflater.from(this);

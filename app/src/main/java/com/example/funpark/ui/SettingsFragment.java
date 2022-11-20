@@ -8,7 +8,7 @@ import androidx.preference.PreferenceFragmentCompat;
 import com.example.funpark.R;
 
 /**
- * Fragment pour les préférences utilisateur crée à partir du fichier préférence
+ * Fragment pour les préférences utilisateur créées à partir du fichier préférence
  */
 public class SettingsFragment extends PreferenceFragmentCompat {
 

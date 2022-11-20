@@ -5,7 +5,7 @@ import androidx.room.TypeConverter;
 import java.util.Date;
 
 /**
- * Classe afin de convertir les date en long pour stocket dasn la base de donnée Room
+ * Classe afin de convertir les dates en long pour stocker dans la base de données Room
  */
 public class DateConverter {
 

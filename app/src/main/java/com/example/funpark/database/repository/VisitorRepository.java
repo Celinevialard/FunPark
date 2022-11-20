@@ -14,7 +14,7 @@ import com.example.funpark.util.OnAsyncEventListener;
 import java.util.List;
 
 /**
- * Gestion de la relation avec la base de donnée pour les visiteurs
+ * Gestion de la relation avec la base de données pour les visiteurs
  */
 public class VisitorRepository {
 

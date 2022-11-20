@@ -14,7 +14,7 @@ import com.example.funpark.util.OnAsyncEventListener;
 import java.util.List;
 
 /**
- * Gestion de la relation avec la base de donnée pour les billets vendus
+ * Gestion de la relation avec la base de données pour les billets vendus
  */
 // TODO pas oublier d'enlever les méthodes non utiliser
 public class SalesTicketRepository {
@@ -36,7 +36,7 @@ public class SalesTicketRepository {
         return instance;
     }
 
-    public LiveData<SalesTicketEntity> getSalesTicket(final int id, Application application) {
+    public LiveData<SalesTicketWithTickets> getSalesTicket(final int id, Application application) {
         return ((BaseApp) application).getDatabase().salesTicketDao().getById(id);
     }
 

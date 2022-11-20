@@ -57,7 +57,7 @@ public class VisitorViewModel extends AndroidViewModel {
     }
 
     /**
-     * Classe factory qui permet de crée qu'une seul fois l'instance
+     * Classe factory qui permet de créer qu'une seul fois l'instance
      */
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 

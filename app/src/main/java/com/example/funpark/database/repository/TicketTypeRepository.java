@@ -10,7 +10,7 @@ import com.example.funpark.database.entity.TicketTypeEntity;
 import java.util.List;
 
 /**
- * Gestion de la relation avec la base de donnée pour les types de billets
+ * Gestion de la relation avec la base de données pour les types de billets
  */
 public class TicketTypeRepository {
 

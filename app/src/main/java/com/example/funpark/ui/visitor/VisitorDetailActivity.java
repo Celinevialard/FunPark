@@ -299,7 +299,7 @@ public class VisitorDetailActivity extends BaseActivity {
             spTicketType.setSelection(visitor.getTicketType());
         } else {
             visitor = new VisitorEntity();
-            //mettre un valeur par défaut
+            //mettre une valeur par défaut
             Date currentTime = Calendar.getInstance().getTime();
             visitor.setVisitDate(currentTime);
             visitor.setBirthDate(currentTime);

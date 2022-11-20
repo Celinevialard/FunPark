@@ -21,7 +21,7 @@ import com.example.funpark.util.PreferenceHelper;
 import com.google.android.material.navigation.NavigationView;
 
 /**
- * Activiter de base avec menu de navigation pour le coté admin
+ * Activité de base avec menu de navigation pour le côté admin
  */
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

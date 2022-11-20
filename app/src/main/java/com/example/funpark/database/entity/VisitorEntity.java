@@ -16,7 +16,7 @@ import java.util.Date;
 
 /**
  * Classe qui contient les visiteurs -> la date de leur visite
- * ainsi que d'autre information pour faire des statistiques
+ * ainsi que d'autres informations pour faire des statistiques
  */
 @Entity(tableName = "visitors", primaryKeys = {"id"}, foreignKeys =
 @ForeignKey(

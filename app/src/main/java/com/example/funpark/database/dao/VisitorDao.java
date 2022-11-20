@@ -15,8 +15,8 @@ import com.example.funpark.database.entity.VisitorEntity;
 import java.util.List;
 
 /**
- * DAO qui permet de faire les actions nécessaire
- * dans la base de donnée pour les visiteur
+ * DAO qui permet de faire les actions nécessaires
+ * dans la base de données pour les visiteurs
  */
 @Dao
 public interface VisitorDao {

@@ -14,7 +14,7 @@ import com.example.funpark.util.OnAsyncEventListener;
 import java.util.List;
 
 /**
- * Gestion de la relation avec la base de donnée pour les billets
+ * Gestion de la relation avec la base de données pour les billets
  */
 public class TicketRepository {
 

@@ -22,6 +22,12 @@ import com.example.funpark.viewmodel.ticket.TicketViewModel;
 
 import java.util.ArrayList;
 
+/**
+ * Activité pour afficher le détail d'un ticket
+ * Permet la modification et la suppression
+ * Si le ticket n'existe pas permet la création
+ */
+
 public class TicketDetailActivity extends BaseActivity {
 
 private static final String TAG = "TicketDetailActivity";
@@ -64,6 +70,7 @@ private TicketViewModel viewModel;
         TicketViewModel.Factory factory = new TicketViewModel.Factory(
                 getApplication(), ticketId);
         viewModel = new ViewModelProvider(new ViewModelStore(), (ViewModelProvider.Factory) factory).get(TicketViewModel.class);
+        // gestion des données du spinner
         viewModel.getTicketTypes().observe(this, ticketTypeEntities -> {
             if (ticketTypeEntities != null) {
                 for (TicketTypeEntity t:ticketTypeEntities) {
@@ -72,7 +79,7 @@ private TicketViewModel viewModel;
                 adapterTicketType.updateData(ticketTypes);
             }
         });
-
+        // gestion des données du visiteur
         viewModel.getTicket().observe(this, ticketEntity -> {
             if (ticketEntity != null) {
                 ticket = ticketEntity;
@@ -180,6 +187,7 @@ private TicketViewModel viewModel;
         spTicketType.setFocusable(false);
         spTicketType.setEnabled(false);
 
+        //Initialise le spinner
         ticketTypes = new ArrayList<>();
         adapterTicketType = new ListAdapter<>(this, R.layout.row_ticket_type, new ArrayList<>());
         spTicketType.setAdapter(adapterTicketType);

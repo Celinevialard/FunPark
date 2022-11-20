@@ -38,18 +38,18 @@ public class VisitorListViewModel extends AndroidViewModel {
         this.repository = repository;
 
         observableVisitors = new MediatorLiveData<>();
-        // set by default null, until we get data from the database.
+        //initialisé à zéro en attendant
         observableVisitors.setValue(null);
 
         LiveData<List<VisitorEntity>> visitors =
                 repository.getVisitors(application);
 
-        // observe the changes of the entities from the database and forward them
+        //observation des modifications de la base de données et les transmet
         observableVisitors.addSource(visitors, observableVisitors::setValue);
     }
 
     /**
-     * Classe factory qui permet de crée qu'une seul fois l'instance
+     * Classe factory qui permet de créer qu'une seul fois l'instance
      */
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 

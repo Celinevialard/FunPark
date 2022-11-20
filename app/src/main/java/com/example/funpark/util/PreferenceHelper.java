@@ -17,7 +17,7 @@ import com.example.funpark.ui.SettingsActivity;
 import java.util.Locale;
 
 /**
- * Helper qui permet de géré les préférences
+ * Helper qui permet de gérer les préférences
  */
 public class PreferenceHelper {
 

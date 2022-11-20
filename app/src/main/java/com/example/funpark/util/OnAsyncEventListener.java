@@ -1,7 +1,7 @@
 package com.example.funpark.util;
 
 /**
- * Interface pour les taches asynchrone.
+ * Interface pour les tâches asynchrones.
  */
 public interface OnAsyncEventListener {
     void onSuccess();

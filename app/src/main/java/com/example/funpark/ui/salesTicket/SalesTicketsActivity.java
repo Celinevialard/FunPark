@@ -21,6 +21,10 @@ import com.example.funpark.viewmodel.salesTicket.SalesTicketListViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Activité pour afficher la liste des billets vendus
+ */
+
 public class SalesTicketsActivity extends BaseCustomerActivity {
 
     private static final String TAG = "SalesTicketsActivity";

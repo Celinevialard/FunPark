@@ -9,7 +9,7 @@ import com.example.funpark.ui.salesTicket.SalesTicketsActivity;
 import com.example.funpark.ui.visitor.VisitorsActivity;
 
 /**
- * Classe pour la premier page de launch
+ * Classe pour la première page de launch
  */
 public class MainActivity extends BaseCustomerActivity {
 

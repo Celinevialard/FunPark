@@ -3,7 +3,7 @@ package com.example.funpark.adapter;
 import java.util.Date;
 
 /***
- * class pour utiliser les dates snas ce soucier des contraintes de la classe de base
+ * classe pour utiliser les dates sans se soucier des contraintes de la classe de base
  */
 public class DateAdapter extends Date {
 

@@ -20,13 +20,17 @@ import com.example.funpark.util.OnAsyncEventListener;
 
 import java.util.List;
 
+/**
+ * Classe pour gérer l'interaction entre l'affichage de la liste des tickets vendus
+ * et la récupération de ses données
+ */
 public class SalesTicketListViewModel extends AndroidViewModel {
 
     private Application application;
 
     private SalesTicketRepository repository;
 
-    // MediatorLiveData can observe other LiveData objects and react on their emissions.
+    // Objet qui réagit lors de la mise à jour de ses objets
     private final MediatorLiveData<List<SalesTicketWithTickets>> observableSalesTicketsWithTickets;
 
     public SalesTicketListViewModel(@NonNull Application application,
@@ -38,18 +42,18 @@ public class SalesTicketListViewModel extends AndroidViewModel {
         repository = salesTicketRepository;
 
         observableSalesTicketsWithTickets = new MediatorLiveData<>();
-        // set by default null, until we get data from the database.
+        // initialisé à zéro en attendant
         observableSalesTicketsWithTickets.setValue(null);
 
         LiveData<List<SalesTicketWithTickets>> salesTickets =
                 salesTicketRepository.getSalesTicketsWithTickets(application);
 
-        // observe the changes of the entities from the database and forward them
+        // observation des modifications de la base de données et les transmet
         observableSalesTicketsWithTickets.addSource(salesTickets, observableSalesTicketsWithTickets::setValue);
     }
 
     /**
-     * A creator is used to inject the account id into the ViewModel
+     * Classe factory qui permet de créer qu'une seul fois l'instance
      */
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
@@ -70,7 +74,8 @@ public class SalesTicketListViewModel extends AndroidViewModel {
     }
 
     /**
-     * Expose the LiveData VisitorAccounts query so the UI can observe it.
+     * Permet à l'UI d'atteindre la liste des billets vendus.
+     * @return
      */
     public LiveData<List<SalesTicketWithTickets>> getSalesTickets() {
         return observableSalesTicketsWithTickets;

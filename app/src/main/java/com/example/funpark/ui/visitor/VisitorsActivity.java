@@ -116,7 +116,7 @@ public class VisitorsActivity extends BaseActivity {
     }
 
     /**
-     * Créer une boite de dialog pour validé la suppression d'un utilisateur
+     * Créer une boite de dialog pour valider la suppression d'un utilisateur
      *
      * @param position
      */

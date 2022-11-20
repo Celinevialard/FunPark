@@ -14,21 +14,21 @@ import com.example.funpark.database.pojo.SalesTicketWithTickets;
 import java.util.List;
 
 /**
- * DAO qui permet de faire les actions nécessaire
- * dans la base de donnée pour les billets vendu
+ * DAO qui permet de faire les actions nécessaires
+ * dans la base de données pour les billets vendus
  */
 //TODO enlever les méthodes inutil
 @Dao
 public interface SalesTicketDao {
-
-    @Query("SELECT * FROM salesTickets WHERE id=:id")
-    LiveData<SalesTicketEntity> getById(int id);
 
     @Query("SELECT * FROM salesTickets")
     LiveData<List<SalesTicketEntity>> getAll();
 
     @Query("SELECT * FROM salesTickets")
     LiveData<List<SalesTicketWithTickets>> getSalesTicketWithTickets();
+
+    @Query("SELECT * FROM salesTickets WHERE id=:id")
+    LiveData<SalesTicketWithTickets> getById(int id);
 
     @Query("DELETE FROM salesTickets")
     void deleteAll();

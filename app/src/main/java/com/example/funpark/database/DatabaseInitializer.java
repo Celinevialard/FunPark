@@ -11,7 +11,7 @@ import com.example.funpark.database.entity.VisitorEntity;
 import java.util.Date;
 
 /**
- * Ajout de donnée dans la base de donnée en arrière plan
+ * Ajout de données dans la base de données en arrière plan
  */
 public class DatabaseInitializer {
 

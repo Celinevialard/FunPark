@@ -14,7 +14,7 @@ import com.example.funpark.R;
 import com.example.funpark.util.PreferenceHelper;
 
 /**
- * Activiter de base sans menu de navigation pour le coté visiteur
+ * Activité de base sans menu de navigation pour le côté visiteur
  */
 public class BaseCustomerActivity extends AppCompatActivity {
 

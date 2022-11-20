@@ -9,7 +9,7 @@
 
     <string name="title_activity_visitor">Visiteur</string>
     <string name="title_activity_tickets">Billets</string>
-    <string name="title_activity_settings">Paramètre</string>
+    <string name="title_activity_settings">Paramètres</string>
     <string name="title_activity_delete_visitor">Supprimer visiteur</string>
     <string name="title_activity_visitor_details">Détails visiteur</string>
     <string name="title_activity_create_visitor">Créer visiteur</string>
@@ -19,11 +19,11 @@
     <string name="title_activity_salestickets">Billets acheté</string>
     <string name="title_activity_saleticket">Détails billet acheté</string>
 
-    <string name="action_settings">Paramètre</string>
+    <string name="action_settings">Paramètres</string>
     <string name="settings_dark_mode">Mode nuit</string>
     <string name="settings_translation">Changer de langue</string>
     <string name="settings_about">à propos</string>
-    <string name="action_error">Une erreur est survenu</string>
+    <string name="action_error">Une erreur est survenue</string>
     <string name="action_accept">Ok</string>
     <string name="action_cancel">Annuler</string>
     <string name="action_create">Créer</string>
