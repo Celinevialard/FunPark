@@ -7,10 +7,14 @@ import android.os.Bundle;
 
 import com.example.funpark.R;
 
+/**
+ * Classe qui permet l'affichage du fragment settings
+ */
 public class SettingsActivity extends AppCompatActivity {
-    public static final String PREFS_NAME = "SharedPrefs";
+
     public static final String KEY_PREF_DARKMODE_SWITCH = "darkmode_switch";
     public static final String KEY_PREF_LANGUAGE = "list_language";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

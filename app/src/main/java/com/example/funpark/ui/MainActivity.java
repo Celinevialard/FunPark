@@ -8,12 +8,16 @@ import com.example.funpark.R;
 import com.example.funpark.ui.salesTicket.SalesTicketsActivity;
 import com.example.funpark.ui.visitor.VisitorsActivity;
 
+/**
+ * Classe pour la premier page de launch
+ */
 public class MainActivity extends BaseCustomerActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getLayoutInflater().inflate(R.layout.activity_main, frameLayout);
+
         Button adminBtn = findViewById(R.id.btnAdmin);
         adminBtn.setOnClickListener(view -> {
             runAdmin();
@@ -25,6 +29,9 @@ public class MainActivity extends BaseCustomerActivity {
 
     }
 
+    /**
+     * Lance l'activité admin
+     */
     public void runAdmin() {
         Intent intent = new Intent(this, VisitorsActivity.class);
         intent.setFlags(
@@ -33,6 +40,9 @@ public class MainActivity extends BaseCustomerActivity {
         startActivity(intent);
     }
 
+    /**
+     * Lance l'activité visiteur
+     */
     public void runVisitor() {
         Intent intent = new Intent(this, SalesTicketsActivity.class);
         intent.setFlags(

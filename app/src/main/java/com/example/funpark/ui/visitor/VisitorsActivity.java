@@ -30,6 +30,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Activité pour afficher la liste des visiteurs
+ * Permet la suppression d'un visiteur
+ */
 public class VisitorsActivity extends BaseActivity {
 
     private static final String TAG = "VisitorsActivity";
@@ -48,11 +52,6 @@ public class VisitorsActivity extends BaseActivity {
 
         RecyclerView recyclerView = findViewById(R.id.visitorRecyclerView);
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        //mRecyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -64,26 +63,23 @@ public class VisitorsActivity extends BaseActivity {
         adapter = new RecyclerAdapter<>(new RecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                Intent intent = new Intent(VisitorsActivity.this,VisitorDetailActivity.class);
+                Intent intent = new Intent(VisitorsActivity.this, VisitorDetailActivity.class);
                 intent.setFlags(
                         Intent.FLAG_ACTIVITY_NO_ANIMATION |
                                 Intent.FLAG_ACTIVITY_NO_HISTORY
                 );
                 intent.putExtra("visitorId", visitors.get(position).getId());
                 startActivity(intent);
-
             }
 
             @Override
             public void onItemLongClick(View v, int position) {
-                Log.d(TAG, "longClicked position:" + position);
-                Log.d(TAG, "longClicked on: " + visitors.get(position).getFirstName());
-
                 createDeleteDialog(position);
             }
         }, this);
 
 
+        // bouton pour ajouter un visiteur
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(view -> {
                     Intent intent = new Intent(VisitorsActivity.this, VisitorDetailActivity.class);
@@ -114,13 +110,16 @@ public class VisitorsActivity extends BaseActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
             return false;
         }
-        /*
-        The activity has to be finished manually in order to guarantee the navigation hierarchy working.
-        */
+        //mettre fin manuellement à l'activité en cours
         finish();
         return super.onNavigationItemSelected(item);
     }
 
+    /**
+     * Créer une boite de dialog pour validé la suppression d'un utilisateur
+     *
+     * @param position
+     */
     private void createDeleteDialog(final int position) {
         final VisitorEntity visitor = visitors.get(position);
         LayoutInflater inflater = LayoutInflater.from(this);
