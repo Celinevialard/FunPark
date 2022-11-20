@@ -17,12 +17,9 @@ import java.util.List;
  * DAO qui permet de faire les actions nécessaires
  * dans la base de données pour les billets vendus
  */
-//TODO enlever les méthodes inutil
+
 @Dao
 public interface SalesTicketDao {
-
-    @Query("SELECT * FROM salesTickets")
-    LiveData<List<SalesTicketEntity>> getAll();
 
     @Query("SELECT * FROM salesTickets")
     LiveData<List<SalesTicketWithTickets>> getSalesTicketWithTickets();

@@ -16,7 +16,6 @@ import java.util.List;
 /**
  * Gestion de la relation avec la base de données pour les billets vendus
  */
-// TODO pas oublier d'enlever les méthodes non utiliser
 public class SalesTicketRepository {
 
     private static SalesTicketRepository instance;
@@ -38,10 +37,6 @@ public class SalesTicketRepository {
 
     public LiveData<SalesTicketWithTickets> getSalesTicket(final int id, Application application) {
         return ((BaseApp) application).getDatabase().salesTicketDao().getById(id);
-    }
-
-    public LiveData<List<SalesTicketEntity>> getSalesTickets(Application application) {
-        return ((BaseApp) application).getDatabase().salesTicketDao().getAll();
     }
 
     public LiveData<List<SalesTicketWithTickets>> getSalesTicketsWithTickets(Application application) {
