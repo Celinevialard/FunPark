@@ -9,6 +9,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 
 import com.example.funpark.ui.SettingsActivity;
+import com.example.funpark.util.PreferenceHelper;
 
 @Entity(tableName = "tickettypes", primaryKeys = {"id"})
 public class TicketTypeEntity{
@@ -55,8 +56,7 @@ public class TicketTypeEntity{
     }
 
     public String toString(Context context) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        String language = sharedPref.getString(SettingsActivity.KEY_PREF_LANGUAGE, "-1");
+        String language = PreferenceHelper.getLanguage(context);
         switch (language){
             case "en":
             default:

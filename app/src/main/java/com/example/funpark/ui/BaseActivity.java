@@ -25,6 +25,7 @@ import androidx.preference.PreferenceManager;
 import com.example.funpark.R;
 import com.example.funpark.ui.ticket.TicketsActivity;
 import com.example.funpark.ui.visitor.VisitorsActivity;
+import com.example.funpark.util.PreferenceHelper;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Locale;
@@ -43,6 +44,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        PreferenceHelper.checkPreferences(this);
         setContentView(R.layout.activity_base);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -125,34 +127,12 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onResume() {
         super.onResume();
-        checkPreferences();
+        PreferenceHelper.checkPreferences(this);
 
     }
     @Override
     public void onPause() {
         super.onPause();
-    }
-
-    public void checkPreferences(){
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        Boolean darkMode = sharedPref.getBoolean(SettingsActivity.KEY_PREF_DARKMODE_SWITCH, false);
-        String language = sharedPref.getString(SettingsActivity.KEY_PREF_LANGUAGE, "-1");
-
-        setDefaultNightMode(darkMode ? MODE_NIGHT_YES : MODE_NIGHT_NO);
-        updateResources(this, language);
-    }
-
-    @TargetApi(Build.VERSION_CODES.N)
-    private Context updateResources(Context context, String language) {
-        Toast.makeText(this,language,Toast.LENGTH_SHORT).show();
-        Locale locale = new Locale(language);
-        Locale.setDefault(locale);
-
-        Configuration configuration = context.getResources().getConfiguration();
-        configuration.setLocale(locale);
-        configuration.setLayoutDirection(locale);
-
-        return context.createConfigurationContext(configuration);
     }
 
 }
