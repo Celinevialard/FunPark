@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "972321609228",
+    "firebase_url": "https://funpark-d96c1-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "funpark-d96c1",
+    "storage_bucket": "funpark-d96c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:972321609228:android:3dc3a4ee9b60f0ce744029",
+        "android_client_info": {
+          "package_name": "com.example.funpark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "972321609228-e6loj4kptdkqb3umpk18tokk3fmoekb9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJzmWKZZg_yzgGMSEvyV9HCO_5CgT0g2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "972321609228-e6loj4kptdkqb3umpk18tokk3fmoekb9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
