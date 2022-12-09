@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelStore;
 
 import com.example.funpark.R;
 import com.example.funpark.adapter.DateAdapter;
-import com.example.funpark.database.pojo.SalesTicketWithTickets;
+import com.example.funpark.database.entity.SalesTicketEntity;
 import com.example.funpark.ui.BaseCustomerActivity;
 import com.example.funpark.util.QrHelper;
 import com.example.funpark.viewmodel.salesTicket.SalesTicketViewModel;
@@ -28,7 +28,7 @@ public class SalesTicketDetailActivity extends BaseCustomerActivity {
     private DateAdapter birthDate;
     private ImageView imageView;
 
-    private SalesTicketWithTickets salesTicket;
+    private SalesTicketEntity salesTicket;
 
     private SalesTicketViewModel viewModel;
 
@@ -39,7 +39,7 @@ public class SalesTicketDetailActivity extends BaseCustomerActivity {
 
         setTitle(getString(R.string.title_activity_saleticket));
 
-        int salesTicketId = getIntent().getIntExtra("salesTicketId", 0);
+        String salesTicketId = getIntent().getStringExtra("salesTicketId");
 
         initiateView();
 
@@ -78,14 +78,14 @@ public class SalesTicketDetailActivity extends BaseCustomerActivity {
         if (salesTicket != null) {
 
             //Chercher le nom du ticket via le pojo
-            etTicket.setText(salesTicket.ticket.toString(this));
-            etFirstname.setText(salesTicket.salesTicket.getFirstname());
-            etLastname.setText((salesTicket.salesTicket.getLastname()));
+            etTicket.setText(salesTicket.getTicketName(this));
+            etFirstname.setText(salesTicket.getFirstname());
+            etLastname.setText((salesTicket.getLastname()));
 
-            birthDate = new DateAdapter(salesTicket.salesTicket.getBirthDate());
+            birthDate = new DateAdapter(salesTicket.getBirthDate());
 
             etBirthDate.setText(birthDate.toString());
-            Bitmap mBitmap = QrHelper.generate(salesTicket.salesTicket);
+            Bitmap mBitmap = QrHelper.generate(salesTicket);
             imageView.setImageBitmap(mBitmap);
 
         }

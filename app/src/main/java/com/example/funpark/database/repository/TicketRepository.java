@@ -4,10 +4,6 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.funpark.BaseApp;
-import com.example.funpark.database.async.ticket.CreateTicket;
-import com.example.funpark.database.async.ticket.DeleteTicket;
-import com.example.funpark.database.async.ticket.UpdateTicket;
 import com.example.funpark.database.entity.TicketEntity;
 import com.example.funpark.database.firebase.TicketListLiveData;
 import com.example.funpark.database.firebase.TicketLiveData;
@@ -21,6 +17,7 @@ import java.util.List;
  * Gestion de la relation avec la base de données pour les billets
  */
 public class TicketRepository {
+    private final String keyName="tickets";
 
     private static TicketRepository instance;
 
@@ -41,29 +38,60 @@ public class TicketRepository {
 
     public LiveData<TicketEntity> getTicket(final String id, Application application) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("tickets");
+                .getReference(keyName)
+                .child(id);
         return new TicketLiveData(reference);
     }
 
     public LiveData<List<TicketEntity>> getTickets(Application application) {
         DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference("tickets");
+                .getReference(keyName);
         return new TicketListLiveData(reference);
          }
 
     public void insert(final TicketEntity ticket, OnAsyncEventListener callback,
                        Application application) {
-        new CreateTicket(application, callback).execute(ticket);
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference(keyName);
+        String key = reference.push().getKey();
+        FirebaseDatabase.getInstance()
+                .getReference(keyName)
+                .child(key)
+                .setValue(ticket, (databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        callback.onFailure(databaseError.toException());
+                    } else {
+                        callback.onSuccess();
+                    }
+                });
     }
 
     public void update(final TicketEntity ticket, OnAsyncEventListener callback,
                        Application application) {
-        new UpdateTicket(application, callback).execute(ticket);
+        FirebaseDatabase.getInstance()
+                .getReference(keyName)
+                .child(ticket.getId())
+                .updateChildren(ticket.toMap(), (databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        callback.onFailure(databaseError.toException());
+                    } else {
+                        callback.onSuccess();
+                    }
+                });
     }
 
     public void delete(final TicketEntity ticket, OnAsyncEventListener callback,
                        Application application) {
-        new DeleteTicket(application, callback).execute(ticket);
+        FirebaseDatabase.getInstance()
+                .getReference(keyName)
+                .child(ticket.getId())
+                .removeValue((databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        callback.onFailure(databaseError.toException());
+                    } else {
+                        callback.onSuccess();
+                    }
+                });
     }
 
 }

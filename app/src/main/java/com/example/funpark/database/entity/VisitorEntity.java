@@ -10,38 +10,36 @@ import androidx.room.TypeConverters;
 
 import com.example.funpark.util.DateConverter;
 import com.example.funpark.util.IEntityBase;
+import com.google.firebase.database.Exclude;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Classe qui contient les visiteurs -> la date de leur visite
  * ainsi que d'autres informations pour faire des statistiques
  */
-@Entity(tableName = "visitors", primaryKeys = {"id"}, foreignKeys =
-@ForeignKey(
-        entity = TicketTypeEntity.class,
-        parentColumns = "id",
-        childColumns = "ticketType"
-))
-@TypeConverters(DateConverter.class)
+
 public class VisitorEntity implements IEntityBase {
 
     @NonNull
-    private int id;
+    private String id;
 
     private String lastName;
     private String firstName;
     private Date birthDate;
-    private int ticketType;
     private Date visitDate;
+    private String ticketType;
+    private String ticketTypeEn;
+    private String ticketTypeFr;
 
     @Ignore
     public VisitorEntity() {
     }
 
-    public VisitorEntity(@NonNull int id, String lastName, String firstName, Date birthDate, int ticketType, Date visitDate) {
-        this.id = id;
+    public VisitorEntity(String lastName, String firstName, Date birthDate, String ticketType, Date visitDate) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.birthDate = birthDate;
@@ -49,11 +47,11 @@ public class VisitorEntity implements IEntityBase {
         this.visitDate = visitDate;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -81,11 +79,11 @@ public class VisitorEntity implements IEntityBase {
         this.birthDate = birthDate;
     }
 
-    public int getTicketType() {
+    public String getTicketType() {
         return ticketType;
     }
 
-    public void setTicketType(int ticketType) {
+    public void setTicketType(String ticketType) {
         this.ticketType = ticketType;
     }
 
@@ -106,5 +104,18 @@ public class VisitorEntity implements IEntityBase {
     @Override
     public String toString(Context context) {
         return toString();
+    }
+
+    @Exclude
+    public Map<String,Object> toMap(){
+        HashMap<String,Object> result = new HashMap<>();
+        result.put("ticket",ticketType);
+        result.put("ticketTypeFr",ticketTypeFr);
+        result.put("ticketTypeEn",ticketTypeEn);
+        result.put("birthDate",birthDate);
+        result.put("firstname",firstName);
+        result.put("lastname",lastName);
+
+        return  result;
     }
 }

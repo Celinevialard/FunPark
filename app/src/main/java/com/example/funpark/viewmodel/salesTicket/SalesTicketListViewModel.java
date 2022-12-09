@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.funpark.BaseApp;
 import com.example.funpark.database.entity.SalesTicketEntity;
 
-import com.example.funpark.database.pojo.SalesTicketWithTickets;
 import com.example.funpark.database.repository.SalesTicketRepository;
 
 import com.example.funpark.util.OnAsyncEventListener;
@@ -31,7 +30,7 @@ public class SalesTicketListViewModel extends AndroidViewModel {
     private SalesTicketRepository repository;
 
     // Objet qui réagit lors de la mise à jour de ses objets
-    private final MediatorLiveData<List<SalesTicketWithTickets>> observableSalesTicketsWithTickets;
+    private final MediatorLiveData<List<SalesTicketEntity>> observableSalesTickets;
 
     public SalesTicketListViewModel(@NonNull Application application,
                                SalesTicketRepository salesTicketRepository) {
@@ -41,15 +40,15 @@ public class SalesTicketListViewModel extends AndroidViewModel {
 
         repository = salesTicketRepository;
 
-        observableSalesTicketsWithTickets = new MediatorLiveData<>();
+        observableSalesTickets = new MediatorLiveData<>();
         // initialisé à zéro en attendant
-        observableSalesTicketsWithTickets.setValue(null);
+        observableSalesTickets.setValue(null);
 
-        LiveData<List<SalesTicketWithTickets>> salesTickets =
-                salesTicketRepository.getSalesTicketsWithTickets(application);
+        LiveData<List<SalesTicketEntity>> salesTickets =
+                salesTicketRepository.getSalesTickets(application);
 
         // observation des modifications de la base de données et les transmet
-        observableSalesTicketsWithTickets.addSource(salesTickets, observableSalesTicketsWithTickets::setValue);
+        observableSalesTickets.addSource(salesTickets, observableSalesTickets::setValue);
     }
 
     /**
@@ -77,8 +76,8 @@ public class SalesTicketListViewModel extends AndroidViewModel {
      * Permet à l'UI d'atteindre la liste des billets vendus.
      * @return
      */
-    public LiveData<List<SalesTicketWithTickets>> getSalesTickets() {
-        return observableSalesTicketsWithTickets;
+    public LiveData<List<SalesTicketEntity>> getSalesTickets() {
+        return observableSalesTickets;
     }
 
 }

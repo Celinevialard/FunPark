@@ -63,7 +63,7 @@ private TicketViewModel viewModel;
 
         navigationView.setCheckedItem(tabulation);
 
-        int ticketId = getIntent().getIntExtra("ticketId", 0);
+        String ticketId = getIntent().getStringExtra("ticketId");
 
         initiateView();
 
@@ -87,7 +87,7 @@ private TicketViewModel viewModel;
             updateContent();
         });
 
-        if (ticketId != 0) {
+        if (ticketId != null) {
             setTitle(R.string.title_activity_ticket_details);
         } else {
             setTitle(R.string.title_activity_create_ticket);
@@ -157,7 +157,8 @@ private TicketViewModel viewModel;
                     etPriceSummer.getText().toString(),
                     etPriceWinter.getText().toString(),
                     etDuration.getText().toString(),
-                    spTicketType.getSelectedItemPosition()
+                    "adult"
+                    //spTicketType.getSelectedItemPosition()
             );
         }
         return super.onOptionsItemSelected(item);
@@ -227,9 +228,7 @@ private TicketViewModel viewModel;
                     etPriceSummer.getText().toString(),
                     etPriceWinter.getText().toString(),
                     etDuration.getText().toString(),
-                    spTicketType.getSelectedItemPosition()
-
-
+                    "adult"//spTicketType.getSelectedItemPosition()
             );
             etTicketNameEn.setFocusable(false);
             etTicketNameEn.setEnabled(false);
@@ -253,7 +252,7 @@ private TicketViewModel viewModel;
         isEditable = !isEditable;
     }
 
-    private void createTicket(String ticketnameEn, String ticketnameFr, String priceSummer, String priceWinter, String duration, int ticketType){
+    private void createTicket(String ticketnameEn, String ticketnameFr, String priceSummer, String priceWinter, String duration, String ticketType){
         ticket = new TicketEntity();
         ticket.setTicketNameEn(ticketnameEn);
         ticket.setTicketNameFr(ticketnameFr);
@@ -276,7 +275,7 @@ private TicketViewModel viewModel;
         });
     }
 
-    private void saveChanges(String ticketnameEn, String ticketnameFr, String priceSummer, String priceWinter, String duration, int ticketType) {
+    private void saveChanges(String ticketnameEn, String ticketnameFr, String priceSummer, String priceWinter, String duration, String ticketType) {
 
         ticket.setTicketNameEn(ticketnameEn);
         ticket.setTicketNameFr(ticketnameFr);
@@ -322,7 +321,7 @@ private TicketViewModel viewModel;
             etPriceSummer.setText(String.valueOf(ticket.getPriceSummer()));
             etPriceWinter.setText(String.valueOf(ticket.getPriceWinter()));
             etDuration.setText(String.valueOf(ticket.getDuration()));
-            spTicketType.setSelection(ticket.getTicketType());
+            //spTicketType.setSelection(ticket.getTicketType());
         }
 
     }

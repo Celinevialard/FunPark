@@ -70,7 +70,7 @@ public class VisitorDetailActivity extends BaseActivity {
 
         navigationView.setCheckedItem(tabulation);
 
-        int visitorId = getIntent().getIntExtra("visitorId", 0);
+        String visitorId = getIntent().getStringExtra("visitorId");
 
         initiateView();
 
@@ -94,7 +94,7 @@ public class VisitorDetailActivity extends BaseActivity {
             updateContent();
         });
 
-        if (visitorId != 0) {
+        if (visitorId != null) {
             setTitle(R.string.title_activity_visitor_details);
         } else {
             setTitle(R.string.title_activity_create_visitor);
@@ -159,7 +159,7 @@ public class VisitorDetailActivity extends BaseActivity {
                     etLastName.getText().toString(),
                     birthDate,
                     visitDate,
-                    spTicketType.getSelectedItemPosition()
+                    "adult"//spTicketType.getSelectedItemPosition()
             );
         }
         return super.onOptionsItemSelected(item);
@@ -198,7 +198,7 @@ public class VisitorDetailActivity extends BaseActivity {
                     etLastName.getText().toString(),
                     birthDate,
                     visitDate,
-                    spTicketType.getSelectedItemPosition()
+                    "adult"//spTicketType.getSelectedItemPosition()
             );
         }
 
@@ -226,7 +226,7 @@ public class VisitorDetailActivity extends BaseActivity {
         isEditable = !isEditable;
     }
 
-    private void createVisitor(String firstName, String lastName, Date birthDate, Date visitDate, int ticketType) {
+    private void createVisitor(String firstName, String lastName, Date birthDate, Date visitDate, String ticketType) {
 
         visitor = new VisitorEntity();
         visitor.setVisitDate(visitDate);
@@ -249,7 +249,7 @@ public class VisitorDetailActivity extends BaseActivity {
         });
     }
 
-    private void saveChanges(String firstName, String lastName, Date birthDate, Date visitDate, int ticketType) {
+    private void saveChanges(String firstName, String lastName, Date birthDate, Date visitDate, String ticketType) {
 
         visitor.setVisitDate(visitDate);
         visitor.setBirthDate(birthDate);
@@ -296,7 +296,7 @@ public class VisitorDetailActivity extends BaseActivity {
         if (visitor != null) {
             etFirstName.setText(visitor.getFirstName());
             etLastName.setText(visitor.getLastName());
-            spTicketType.setSelection(visitor.getTicketType());
+            //spTicketType.setSelection(visitor.getTicketType());
         } else {
             visitor = new VisitorEntity();
             //mettre une valeur par défaut

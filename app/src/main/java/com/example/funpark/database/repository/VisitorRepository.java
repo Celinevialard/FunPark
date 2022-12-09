@@ -4,12 +4,11 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.funpark.BaseApp;
-import com.example.funpark.database.async.visitor.CreateVisitor;
-import com.example.funpark.database.async.visitor.DeleteVisitor;
-import com.example.funpark.database.async.visitor.UpdateVisitor;
 import com.example.funpark.database.entity.VisitorEntity;
+import com.example.funpark.database.firebase.*;
 import com.example.funpark.util.OnAsyncEventListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -18,6 +17,7 @@ import java.util.List;
  */
 public class VisitorRepository {
 
+    private final String keyName="visitors";
     private static VisitorRepository instance;
 
     private VisitorRepository() {
@@ -34,26 +34,61 @@ public class VisitorRepository {
         return instance;
     }
 
-    public LiveData<VisitorEntity> getVisitor(final int id, Application application) {
-        return null;
+    public LiveData<VisitorEntity> getVisitor(final String id, Application application) {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference(keyName)
+                .child(id);
+        return new VisitorLiveData(reference);
     }
 
     public LiveData<List<VisitorEntity>> getVisitors(Application application) {
-        return null;
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference(keyName);
+        return new VisitorListLiveData(reference);
     }
 
     public void insert(final VisitorEntity visitor, OnAsyncEventListener callback,
                        Application application) {
-        new CreateVisitor(application, callback).execute(visitor);
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference(keyName);
+        String key = reference.push().getKey();
+        FirebaseDatabase.getInstance()
+                .getReference(keyName)
+                .child(key)
+                .setValue(visitor, (databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        callback.onFailure(databaseError.toException());
+                    } else {
+                        callback.onSuccess();
+                    }
+                });
     }
 
     public void update(final VisitorEntity visitor, OnAsyncEventListener callback,
                        Application application) {
-        new UpdateVisitor(application, callback).execute(visitor);
+        FirebaseDatabase.getInstance()
+                .getReference(keyName)
+                .child(visitor.getId())
+                .updateChildren(visitor.toMap(), (databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        callback.onFailure(databaseError.toException());
+                    } else {
+                        callback.onSuccess();
+                    }
+                });
     }
 
     public void delete(final VisitorEntity visitor, OnAsyncEventListener callback,
                        Application application) {
-        new DeleteVisitor(application, callback).execute(visitor);
+        FirebaseDatabase.getInstance()
+                .getReference(keyName)
+                .child(visitor.getId())
+                .removeValue((databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        callback.onFailure(databaseError.toException());
+                    } else {
+                        callback.onSuccess();
+                    }
+                });
     }
 }

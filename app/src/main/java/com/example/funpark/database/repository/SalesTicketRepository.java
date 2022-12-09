@@ -4,12 +4,12 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.funpark.BaseApp;
-import com.example.funpark.database.async.salesTicket.CreateSalesTicket;
-import com.example.funpark.database.async.salesTicket.DeleteSalesTicket;
 import com.example.funpark.database.entity.SalesTicketEntity;
-import com.example.funpark.database.pojo.SalesTicketWithTickets;
+import com.example.funpark.database.firebase.SalesTicketListLiveData;
+import com.example.funpark.database.firebase.SalesTicketLiveData;
 import com.example.funpark.util.OnAsyncEventListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -17,6 +17,7 @@ import java.util.List;
  * Gestion de la relation avec la base de données pour les billets vendus
  */
 public class SalesTicketRepository {
+    private final String keyName = "salesTickets";
 
     private static SalesTicketRepository instance;
 
@@ -35,22 +36,48 @@ public class SalesTicketRepository {
         return instance;
     }
 
-    public LiveData<SalesTicketWithTickets> getSalesTicket(final int id, Application application) {
-        return ((BaseApp) application).getDatabase().salesTicketDao().getById(id);
+    public LiveData<SalesTicketEntity> getSalesTicket(final String id, Application application) {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference(keyName)
+                .child(id);
+        return new SalesTicketLiveData(reference);
     }
 
-    public LiveData<List<SalesTicketWithTickets>> getSalesTicketsWithTickets(Application application) {
-        return ((BaseApp) application).getDatabase().salesTicketDao().getSalesTicketWithTickets();
+    public LiveData<List<SalesTicketEntity>> getSalesTickets(Application application) {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference(keyName);
+        return new SalesTicketListLiveData(reference);
     }
 
     public void insert(final SalesTicketEntity salesTicket, OnAsyncEventListener callback,
                        Application application) {
-        new CreateSalesTicket(application, callback).execute(salesTicket);
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference(keyName);
+        String key = reference.push().getKey();
+        FirebaseDatabase.getInstance()
+                .getReference(keyName)
+                .child(key)
+                .setValue(salesTicket, (databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        callback.onFailure(databaseError.toException());
+                    } else {
+                        callback.onSuccess();
+                    }
+                });
     }
 
     public void delete(final SalesTicketEntity salesTicket, OnAsyncEventListener callback,
                        Application application) {
-        new DeleteSalesTicket(application, callback).execute(salesTicket);
+        FirebaseDatabase.getInstance()
+                .getReference(keyName)
+                .child(salesTicket.getId())
+                .removeValue((databaseError, databaseReference) -> {
+                    if (databaseError != null) {
+                        callback.onFailure(databaseError.toException());
+                    } else {
+                        callback.onSuccess();
+                    }
+                });
     }
 
 }

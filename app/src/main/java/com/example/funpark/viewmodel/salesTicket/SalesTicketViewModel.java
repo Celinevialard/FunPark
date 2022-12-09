@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.funpark.BaseApp;
 import com.example.funpark.database.entity.SalesTicketEntity;
 
-import com.example.funpark.database.pojo.SalesTicketWithTickets;
 import com.example.funpark.database.repository.SalesTicketRepository;
 
 /**
@@ -27,10 +26,10 @@ public class SalesTicketViewModel extends AndroidViewModel {
     private SalesTicketRepository repository;
 
     // Objet qui réagit lors de la mise à jour de ses objets
-    private final MediatorLiveData<SalesTicketWithTickets> observableSalesTicket;
+    private final MediatorLiveData<SalesTicketEntity> observableSalesTicket;
 
     public SalesTicketViewModel(@NonNull Application application,
-                           final int salesTicketId,
+                           final String salesTicketId,
                            SalesTicketRepository salesTicketRepository) {
         super(application);
 
@@ -42,7 +41,7 @@ public class SalesTicketViewModel extends AndroidViewModel {
         // set by default null, until we get data from the database.
         observableSalesTicket.setValue(null);
 
-        LiveData<SalesTicketWithTickets> salesTicket = repository.getSalesTicket(salesTicketId, application);
+        LiveData<SalesTicketEntity> salesTicket = repository.getSalesTicket(salesTicketId, application);
 
         // observe the changes of the account entity from the database and forward them
         observableSalesTicket.addSource(salesTicket, observableSalesTicket::setValue);
@@ -56,11 +55,11 @@ public class SalesTicketViewModel extends AndroidViewModel {
         @NonNull
         private final Application application;
 
-        private final int salesTicketId;
+        private final String salesTicketId;
 
         private final SalesTicketRepository repository;
 
-        public Factory(@NonNull Application application, int salesTicketId) {
+        public Factory(@NonNull Application application, String salesTicketId) {
             this.application = application;
             this.salesTicketId = salesTicketId;
             repository = ((BaseApp) application).getSalesTicketRepository();
@@ -77,7 +76,7 @@ public class SalesTicketViewModel extends AndroidViewModel {
      * Permet à l'UI d'atteindre le billet vendu.
      * @return le ticket du context
      */
-    public LiveData<SalesTicketWithTickets> getSalesTicket() {
+    public LiveData<SalesTicketEntity> getSalesTicket() {
         return observableSalesTicket;
     }
 

@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.funpark.R;
+import com.example.funpark.database.entity.SalesTicketEntity;
 import com.example.funpark.database.entity.TicketEntity;
 import com.example.funpark.database.entity.VisitorEntity;
-import com.example.funpark.database.pojo.SalesTicketWithTickets;
 import com.example.funpark.util.IEntityBase;
 import com.example.funpark.util.RecyclerViewItemClickListener;
 
@@ -98,8 +98,8 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
                     if (mData instanceof TicketEntity) {
                         return ((TicketEntity) mData.get(oldItemPosition)).getId() == ((TicketEntity) data.get(newItemPosition)).getId();
                     }
-                    if (mData instanceof SalesTicketWithTickets) {
-                        return ((SalesTicketWithTickets) mData.get(oldItemPosition)).salesTicket.getId() == ((TicketEntity) data.get(newItemPosition)).getId();
+                    if (mData instanceof SalesTicketEntity) {
+                        return ((SalesTicketEntity) mData.get(oldItemPosition)).getId() == ((SalesTicketEntity) data.get(newItemPosition)).getId();
                     }
                     return false;
                 }
@@ -126,13 +126,13 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
                                 && Objects.equals(newTicket.getDuration(), newTicket.getDuration());
 
                     }
-                    if (mData instanceof SalesTicketWithTickets) {
-                        SalesTicketWithTickets salesTicketWithTickets = (SalesTicketWithTickets) data.get(newItemPosition);
-                        SalesTicketWithTickets oldSalesTicket = (SalesTicketWithTickets) mData.get(newItemPosition);
-                        return salesTicketWithTickets.salesTicket.getId() == oldSalesTicket.salesTicket.getId()
-                                && Objects.equals(salesTicketWithTickets.salesTicket.getLastname(), salesTicketWithTickets.salesTicket.getLastname())
-                                && Objects.equals(salesTicketWithTickets.salesTicket.getFirstname(), salesTicketWithTickets.salesTicket.getFirstname())
-                                && Objects.equals(salesTicketWithTickets.salesTicket.getBirthDate(), salesTicketWithTickets.salesTicket.getBirthDate());
+                    if (mData instanceof SalesTicketEntity) {
+                        SalesTicketEntity salesTicketWithTickets = (SalesTicketEntity) data.get(newItemPosition);
+                        SalesTicketEntity oldSalesTicket = (SalesTicketEntity) mData.get(newItemPosition);
+                        return salesTicketWithTickets.getId() == oldSalesTicket.getId()
+                                && Objects.equals(salesTicketWithTickets.getLastname(), salesTicketWithTickets.getLastname())
+                                && Objects.equals(salesTicketWithTickets.getFirstname(), salesTicketWithTickets.getFirstname())
+                                && Objects.equals(salesTicketWithTickets.getBirthDate(), salesTicketWithTickets.getBirthDate());
                     }
                     return false;
                 }

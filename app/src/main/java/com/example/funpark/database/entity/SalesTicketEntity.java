@@ -1,5 +1,7 @@
 package com.example.funpark.database.entity;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -7,47 +9,49 @@ import androidx.room.Ignore;
 import androidx.room.TypeConverters;
 
 import com.example.funpark.util.DateConverter;
+import com.example.funpark.util.IEntityBase;
+import com.example.funpark.util.PreferenceHelper;
+import com.google.firebase.database.Exclude;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /***
  * classe qui contient les tickets achetés par un utilisateur du park
  */
-@Entity(tableName = "salesTickets", primaryKeys = {"id"}, foreignKeys =
-@ForeignKey(
-        entity = TicketEntity.class,
-        parentColumns = "id",
-        childColumns = "ticket",
-        onDelete = ForeignKey.CASCADE
-))
-@TypeConverters(DateConverter.class)
-public class SalesTicketEntity {
+public class SalesTicketEntity implements IEntityBase {
 
     @NonNull
-    private int id;
+    private String id;
 
     private String lastname;
     private String firstname;
     private Date birthDate;
-    private int ticket;
+    private double price;
+    private int duration;
+    private String ticket;
+    private String ticketTypeEn;
+    private String ticketTypeFr;
+    private String ticketNameEn;
+    private String ticketNameFr;
 
     @Ignore
     public SalesTicketEntity() {
     }
 
-    public SalesTicketEntity(@NonNull int id, String lastname, String firstname, Date birthDate, int ticket) {
-        this.id = id;
+    public SalesTicketEntity(String lastname, String firstname, Date birthDate, String ticket) {
         this.lastname = lastname;
         this.firstname = firstname;
         this.birthDate = birthDate;
         this.ticket = ticket;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -75,11 +79,72 @@ public class SalesTicketEntity {
         this.birthDate = birthDate;
     }
 
-    public int getTicket() {
+    public String getTicket() {
         return ticket;
     }
 
-    public void setTicket(int ticket) {
+    public void setTicket(String ticket) {
         this.ticket = ticket;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public String getTicketTypeName(Context context) {
+        String language = PreferenceHelper.getLanguage(context);
+        switch (language) {
+            case "en":
+            default:
+                return ticketNameEn;
+            case "fr":
+                return ticketNameFr;
+        }
+    }
+
+
+    public String getTicketName(Context context) {
+        String language = PreferenceHelper.getLanguage(context);
+        switch (language) {
+            case "en":
+            default:
+                return ticketNameEn;
+            case "fr":
+                return ticketNameFr;
+        }
+    }
+
+    @Exclude
+    public Map<String,Object> toMap(){
+        HashMap<String,Object> result = new HashMap<>();
+        result.put("ticket",ticket);
+        result.put("ticketTypeFr",ticketTypeFr);
+        result.put("ticketTypeEn",ticketTypeEn);
+        result.put("ticketNameEn",ticketNameEn);
+        result.put("ticketNameFr",ticketNameFr);
+        result.put("price",price);
+        result.put("duration",duration);
+        result.put("birthDate",birthDate);
+        result.put("firstname",firstname);
+        result.put("lastname",lastname);
+
+        return  result;
+    }
+
+    @Override
+    public String toString(Context context) {
+        return getFirstname() + " " + getTicketName(context);
     }
 }

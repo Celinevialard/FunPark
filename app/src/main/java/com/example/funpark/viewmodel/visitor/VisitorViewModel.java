@@ -37,7 +37,7 @@ public class VisitorViewModel extends AndroidViewModel {
     private final MediatorLiveData<VisitorEntity> observableVisitor;
 
     public VisitorViewModel(@NonNull Application application,
-                            final int visitorId,
+                            final String visitorId,
                             VisitorRepository visitorRepository, TicketTypeRepository repositoryTicketType) {
         super(application);
 
@@ -64,12 +64,12 @@ public class VisitorViewModel extends AndroidViewModel {
         @NonNull
         private final Application application;
 
-        private final int visitorId;
+        private final String visitorId;
 
         private final VisitorRepository repository;
         private final TicketTypeRepository repositoryTicketType;
 
-        public Factory(@NonNull Application application, int visitorId) {
+        public Factory(@NonNull Application application, String visitorId) {
             this.application = application;
             this.visitorId = visitorId;
             repository = ((BaseApp) application).getVisitorRepository();
