@@ -34,7 +34,7 @@ public class TicketViewModel  extends AndroidViewModel {
     private final MediatorLiveData<TicketEntity> observableTicket;
 
     public TicketViewModel(@NonNull Application application,
-                                final int ticketId,
+                                final String ticketId,
                                 TicketRepository ticketRepository, TicketTypeRepository ticketTypeRepository) {
         super(application);
 
@@ -61,12 +61,12 @@ public class TicketViewModel  extends AndroidViewModel {
         @NonNull
         private final Application application;
 
-        private final int ticketId;
+        private final String ticketId;
 
         private final TicketRepository repository;
         private final TicketTypeRepository repositoryTicketType;
 
-        public Factory(@NonNull Application application, int ticketId) {
+        public Factory(@NonNull Application application, String ticketId) {
             this.application = application;
             this.ticketId = ticketId;
             repository = ((BaseApp) application).getTicketRepository();

@@ -2,7 +2,6 @@ package com.example.funpark;
 
 import android.app.Application;
 
-import com.example.funpark.database.AppDatabase;
 import com.example.funpark.database.repository.SalesTicketRepository;
 import com.example.funpark.database.repository.TicketRepository;
 import com.example.funpark.database.repository.TicketTypeRepository;
@@ -17,10 +16,6 @@ public class BaseApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-    }
-
-    public AppDatabase getDatabase() {
-        return AppDatabase.getInstance(this);
     }
 
     public VisitorRepository getVisitorRepository() {

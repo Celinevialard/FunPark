@@ -6,6 +6,9 @@ import androidx.lifecycle.LiveData;
 
 import com.example.funpark.BaseApp;
 import com.example.funpark.database.entity.TicketTypeEntity;
+import com.example.funpark.database.firebase.TicketTypeListLiveData;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -32,6 +35,11 @@ public class TicketTypeRepository {
     }
 
     public LiveData<List<TicketTypeEntity>> getTicketTypes(Application application) {
-        return ((BaseApp) application).getDatabase().ticketTypeDao().getAll();
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("ticketTypes");
+
+        return new TicketTypeListLiveData(reference);
     }
+
+
 }

@@ -9,48 +9,49 @@ import androidx.room.Ignore;
 
 import com.example.funpark.util.IEntityBase;
 import com.example.funpark.util.PreferenceHelper;
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /***
  * Classe qui contient les tickets qui peuvent être vendu
  */
-@Entity(tableName = "tickets", primaryKeys = {"id"}, foreignKeys =
-@ForeignKey(
-        entity = TicketTypeEntity.class,
-        parentColumns = "id",
-        childColumns = "ticketType",
-        onDelete = ForeignKey.CASCADE
-))
+
 public class TicketEntity implements IEntityBase {
 
-    @NonNull
-    private int id;
+    private String id;
 
     private String ticketNameEn;
     private String ticketNameFr;
     private double priceSummer;
     private double priceWinter;
     private int duration;
-    private int ticketType;
+    private String ticketType;
+    private String ticketTypeEn;
+    private String ticketTypeFr;
 
-    @Ignore
+
     public TicketEntity() {
     }
 
-    public TicketEntity(@NonNull int id, String ticketNameEn, String ticketNameFr, double priceSummer, double priceWinter, int duration, int ticketType) {
-        this.id = id;
+    public TicketEntity(String ticketNameEn, String ticketNameFr, double priceSummer, double priceWinter, int duration, String ticketType, String ticketTypeEn, String ticketTypeFr) {
         this.ticketNameEn = ticketNameEn;
         this.ticketNameFr = ticketNameFr;
         this.priceSummer = priceSummer;
         this.priceWinter = priceWinter;
         this.duration = duration;
         this.ticketType = ticketType;
+        this.ticketTypeEn = ticketTypeEn;
+        this.ticketTypeFr = ticketTypeFr;
     }
 
-    public int getId() {
+    @Exclude
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -94,11 +95,11 @@ public class TicketEntity implements IEntityBase {
         this.duration = duration;
     }
 
-    public int getTicketType() {
+    public String getTicketType() {
         return ticketType;
     }
 
-    public void setTicketType(int ticketType) {
+    public void setTicketType(String ticketType) {
         this.ticketType = ticketType;
     }
 
@@ -112,5 +113,20 @@ public class TicketEntity implements IEntityBase {
             case "fr":
                 return ticketNameFr;
         }
+    }
+
+    @Exclude
+    public Map<String,Object> toMap(){
+        HashMap<String,Object> result = new HashMap<>();
+        result.put("ticketType",ticketType);
+        result.put("ticketTypeFr",ticketTypeFr);
+        result.put("ticketTypeEn",ticketTypeEn);
+        result.put("ticketNameEn",ticketNameEn);
+        result.put("ticketNameFr",ticketNameFr);
+        result.put("priceSummer",priceSummer);
+        result.put("priceWinter",priceWinter);
+        result.put("duration",duration);
+
+        return  result;
     }
 }

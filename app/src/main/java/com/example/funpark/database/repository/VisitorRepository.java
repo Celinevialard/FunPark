@@ -35,11 +35,11 @@ public class VisitorRepository {
     }
 
     public LiveData<VisitorEntity> getVisitor(final int id, Application application) {
-        return ((BaseApp) application).getDatabase().visitorDao().getById(id);
+        return null;
     }
 
     public LiveData<List<VisitorEntity>> getVisitors(Application application) {
-        return ((BaseApp) application).getDatabase().visitorDao().getAll();
+        return null;
     }
 
     public void insert(final VisitorEntity visitor, OnAsyncEventListener callback,

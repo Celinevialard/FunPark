@@ -9,7 +9,11 @@ import com.example.funpark.database.async.ticket.CreateTicket;
 import com.example.funpark.database.async.ticket.DeleteTicket;
 import com.example.funpark.database.async.ticket.UpdateTicket;
 import com.example.funpark.database.entity.TicketEntity;
+import com.example.funpark.database.firebase.TicketListLiveData;
+import com.example.funpark.database.firebase.TicketLiveData;
 import com.example.funpark.util.OnAsyncEventListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -35,13 +39,17 @@ public class TicketRepository {
         return instance;
     }
 
-    public LiveData<TicketEntity> getTicket(final int id, Application application) {
-        return ((BaseApp) application).getDatabase().ticketDao().getById(id);
+    public LiveData<TicketEntity> getTicket(final String id, Application application) {
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("tickets");
+        return new TicketLiveData(reference);
     }
 
     public LiveData<List<TicketEntity>> getTickets(Application application) {
-        return ((BaseApp) application).getDatabase().ticketDao().getAll();
-    }
+        DatabaseReference reference = FirebaseDatabase.getInstance()
+                .getReference("tickets");
+        return new TicketListLiveData(reference);
+         }
 
     public void insert(final TicketEntity ticket, OnAsyncEventListener callback,
                        Application application) {
