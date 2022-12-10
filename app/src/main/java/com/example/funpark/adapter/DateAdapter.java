@@ -10,6 +10,15 @@ public class DateAdapter extends Date {
     public DateAdapter(Date date) {
         super(date.getYear(), date.getMonth(), date.getDate());
     }
+    public DateAdapter(int year, int month, int date) {
+        super(year, month, date);
+    }
+    public static DateAdapter toDateAdapter(String date) {
+        int dateDay = Integer.parseInt(date.substring(0,1));
+        int dateMonth = Integer.parseInt(date.substring(2,3));
+        int dateYear = Integer.parseInt(date.substring(4,7));
+        return new DateAdapter(dateYear-1900, dateMonth-1, dateDay);
+    }
 
     @Override
     public void setYear(int year) {
