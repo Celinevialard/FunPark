@@ -157,8 +157,8 @@ public class VisitorDetailActivity extends BaseActivity {
             createVisitor(
                     etFirstName.getText().toString(),
                     etLastName.getText().toString(),
-                    birthDate,
-                    visitDate,
+                    birthDate.toString(),
+                    visitDate.toString(),
                     "adult"//spTicketType.getSelectedItemPosition()
             );
         }
@@ -196,8 +196,8 @@ public class VisitorDetailActivity extends BaseActivity {
             saveChanges(
                     etFirstName.getText().toString(),
                     etLastName.getText().toString(),
-                    birthDate,
-                    visitDate,
+                    birthDate.toString(),
+                    visitDate.toString(),
                     "adult"//spTicketType.getSelectedItemPosition()
             );
         }
@@ -226,7 +226,7 @@ public class VisitorDetailActivity extends BaseActivity {
         isEditable = !isEditable;
     }
 
-    private void createVisitor(String firstName, String lastName, Date birthDate, Date visitDate, String ticketType) {
+    private void createVisitor(String firstName, String lastName, String birthDate, String visitDate, String ticketType) {
 
         visitor = new VisitorEntity();
         visitor.setVisitDate(visitDate);
@@ -249,7 +249,7 @@ public class VisitorDetailActivity extends BaseActivity {
         });
     }
 
-    private void saveChanges(String firstName, String lastName, Date birthDate, Date visitDate, String ticketType) {
+    private void saveChanges(String firstName, String lastName, String birthDate, String visitDate, String ticketType) {
 
         visitor.setVisitDate(visitDate);
         visitor.setBirthDate(birthDate);
@@ -301,8 +301,8 @@ public class VisitorDetailActivity extends BaseActivity {
             visitor = new VisitorEntity();
             //mettre une valeur par défaut
             Date currentTime = Calendar.getInstance().getTime();
-            visitor.setVisitDate(currentTime);
-            visitor.setBirthDate(currentTime);
+            visitor.setVisitDate(currentTime.toString());
+            visitor.setBirthDate(currentTime.toString());
         }
         // gestion du picker date
         birthDate = new DateAdapter(visitor.getBirthDate());

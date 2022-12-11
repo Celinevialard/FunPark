@@ -27,7 +27,7 @@ public class SalesTicketEntity implements IEntityBase {
 
     private String lastname;
     private String firstname;
-    private Date birthDate;
+    private String birthDate;
     private double price;
     private int duration;
     private String ticket;
@@ -40,7 +40,7 @@ public class SalesTicketEntity implements IEntityBase {
     public SalesTicketEntity() {
     }
 
-    public SalesTicketEntity(String lastname, String firstname, Date birthDate, String ticket) {
+    public SalesTicketEntity(String lastname, String firstname, String birthDate, String ticket) {
         this.lastname = lastname;
         this.firstname = firstname;
         this.birthDate = birthDate;
@@ -71,11 +71,11 @@ public class SalesTicketEntity implements IEntityBase {
         this.firstname = firstname;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 

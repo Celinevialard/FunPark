@@ -11,6 +11,10 @@ public class DateAdapter extends Date {
         super(date.getYear(), date.getMonth(), date.getDate());
     }
 
+    public DateAdapter(String date) {
+
+    }
+
     @Override
     public void setYear(int year) {
         super.setYear(year - 1900);
