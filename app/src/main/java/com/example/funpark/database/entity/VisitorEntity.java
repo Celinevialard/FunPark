@@ -29,8 +29,8 @@ public class VisitorEntity implements IEntityBase {
 
     private String lastName;
     private String firstName;
-    private Date birthDate;
-    private Date visitDate;
+    private String birthDate;
+    private String visitDate;
     private String ticketType;
     private String ticketTypeEn;
     private String ticketTypeFr;
@@ -39,7 +39,7 @@ public class VisitorEntity implements IEntityBase {
     public VisitorEntity() {
     }
 
-    public VisitorEntity(String lastName, String firstName, Date birthDate, String ticketType, Date visitDate) {
+    public VisitorEntity(String lastName, String firstName, String birthDate, String ticketType, String visitDate) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.birthDate = birthDate;
@@ -71,11 +71,11 @@ public class VisitorEntity implements IEntityBase {
         this.firstName = firstName;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -87,11 +87,11 @@ public class VisitorEntity implements IEntityBase {
         this.ticketType = ticketType;
     }
 
-    public Date getVisitDate() {
+    public String getVisitDate() {
         return visitDate;
     }
 
-    public void setVisitDate(Date visitDate) {
+    public void setVisitDate(String visitDate) {
         this.visitDate = visitDate;
     }
 
