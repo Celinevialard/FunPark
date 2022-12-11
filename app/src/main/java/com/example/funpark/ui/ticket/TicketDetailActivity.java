@@ -157,8 +157,7 @@ private TicketViewModel viewModel;
                     etPriceSummer.getText().toString(),
                     etPriceWinter.getText().toString(),
                     etDuration.getText().toString(),
-                    "adult"
-                    //spTicketType.getSelectedItemPosition()
+                    ((TicketTypeEntity)spTicketType.getSelectedItem()).getId()
             );
         }
         return super.onOptionsItemSelected(item);
@@ -228,7 +227,7 @@ private TicketViewModel viewModel;
                     etPriceSummer.getText().toString(),
                     etPriceWinter.getText().toString(),
                     etDuration.getText().toString(),
-                    "adult"//spTicketType.getSelectedItemPosition()
+                    ((TicketTypeEntity)spTicketType.getSelectedItem()).getId()
             );
             etTicketNameEn.setFocusable(false);
             etTicketNameEn.setEnabled(false);
@@ -321,7 +320,13 @@ private TicketViewModel viewModel;
             etPriceSummer.setText(String.valueOf(ticket.getPriceSummer()));
             etPriceWinter.setText(String.valueOf(ticket.getPriceWinter()));
             etDuration.setText(String.valueOf(ticket.getDuration()));
-            //spTicketType.setSelection(ticket.getTicketType());
+            TicketTypeEntity ticketTypeEntity = null;
+            for (TicketTypeEntity ticketType:ticketTypes
+                 ) {
+                if(ticketType.getId().equals(ticket.getTicketType()))
+                    ticketTypeEntity= ticketType;
+            }
+            spTicketType.setSelection(adapterTicketType.getPosition(ticketTypeEntity));
         }
 
     }

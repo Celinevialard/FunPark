@@ -97,8 +97,7 @@ public class VisitorEntity implements IEntityBase {
 
     @Override
     public String toString() {
-        SimpleDateFormat format = new SimpleDateFormat("dd MMMM yyyy");
-        return lastName + " " + firstName + " " + format.format(visitDate);
+        return lastName + " " + firstName + " " + visitDate;
     }
 
     @Override

@@ -296,16 +296,20 @@ public class VisitorDetailActivity extends BaseActivity {
         if (visitor != null) {
             etFirstName.setText(visitor.getFirstName());
             etLastName.setText(visitor.getLastName());
+            birthDate = new DateAdapter(visitor.getBirthDate());
+            visitDate = new DateAdapter(visitor.getVisitDate());
+
             //spTicketType.setSelection(visitor.getTicketType());
         } else {
             visitor = new VisitorEntity();
             //mettre une valeur par défaut
             Date currentTime = Calendar.getInstance().getTime();
-            visitor.setVisitDate(currentTime.toString());
-            visitor.setBirthDate(currentTime.toString());
+            visitDate = new DateAdapter(currentTime);
+            birthDate = new DateAdapter(currentTime);
+            visitor.setVisitDate(visitDate.toString());
+            visitor.setBirthDate(birthDate.toString());
         }
         // gestion du picker date
-        birthDate = new DateAdapter(visitor.getBirthDate());
         birthDateDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
@@ -317,7 +321,6 @@ public class VisitorDetailActivity extends BaseActivity {
         }, birthDate.getYear(), birthDate.getMonth(), birthDate.getDate());
         etBirthDate.setText(birthDate.toString());
 
-        visitDate = new DateAdapter(visitor.getVisitDate());
         visitDateDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {

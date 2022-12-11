@@ -13,15 +13,12 @@ public class DateAdapter extends Date {
     public DateAdapter(int year, int month, int date) {
         super(year, month, date);
     }
-    public static DateAdapter toDateAdapter(String date) {
-        int dateDay = Integer.parseInt(date.substring(0,1));
-        int dateMonth = Integer.parseInt(date.substring(2,3));
-        int dateYear = Integer.parseInt(date.substring(4,7));
-        return new DateAdapter(dateYear-1900, dateMonth-1, dateDay);
-    }
 
     public DateAdapter(String date) {
-
+        super();
+        setDate(Integer.parseInt(date.substring(8,10)));
+        setMonth(Integer.parseInt(date.substring(5,7)));
+        setYear(Integer.parseInt(date.substring(0,4)));
     }
 
     @Override
@@ -46,13 +43,14 @@ public class DateAdapter extends Date {
 
     @Override
     public String toString() {
-        String dateString = "";
-        if (this.getDate() < 10)
-            dateString += "0";
-        dateString += this.getDate() + ".";
+        String dateString = this.getYear() + "-";
         if (this.getMonth() < 10)
             dateString += "0";
-        dateString += this.getMonth() + "." + this.getYear();
+        dateString += this.getMonth() + "-";
+        if (this.getDate() < 10)
+            dateString += "0";
+        dateString += this.getDate() ;
+
         return dateString;
     }
 }
