@@ -8,11 +8,13 @@ import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.TypeConverters;
 
+import com.example.funpark.adapter.DateAdapter;
 import com.example.funpark.util.DateConverter;
 import com.example.funpark.util.IEntityBase;
 import com.google.firebase.database.Exclude;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +39,10 @@ public class VisitorEntity implements IEntityBase {
 
     @Ignore
     public VisitorEntity() {
+        Date currentTime = Calendar.getInstance().getTime();
+        DateAdapter currentDate = new DateAdapter(currentTime);
+        setVisitDate(currentDate.toString());
+        setBirthDate(currentDate.toString());
     }
 
     public VisitorEntity(String lastname , String firstname, String birthDate, String ticketType, String visitDate) {

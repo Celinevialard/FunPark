@@ -99,7 +99,7 @@ private TicketViewModel viewModel;
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
 
-        if(ticket!= null){
+        if(ticket.getId()!= null){
             menu.add(0,EDIT_TICKET, Menu.NONE, getString(R.string.action_edit))
                     .setIcon(R.drawable.ic_mode_edit_white_24dp)
                     .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);

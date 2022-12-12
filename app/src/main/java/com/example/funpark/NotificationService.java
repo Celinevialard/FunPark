@@ -11,6 +11,5 @@ public class NotificationService extends FirebaseMessagingService{
     @Override
     public void onMessageReceived(@NonNull RemoteMessage message) {
         super.onMessageReceived(message);
-        Toast.makeText(this,"notification!!!",Toast.LENGTH_SHORT);
-    }
+         }
 }

@@ -5,8 +5,10 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 
 import com.example.funpark.database.entity.TicketEntity;
+import com.example.funpark.database.entity.VisitorEntity;
 import com.example.funpark.database.firebase.TicketListLiveData;
 import com.example.funpark.database.firebase.TicketLiveData;
+import com.example.funpark.database.firebase.VisitorLiveData;
 import com.example.funpark.util.OnAsyncEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -37,6 +39,9 @@ public class TicketRepository {
     }
 
     public LiveData<TicketEntity> getTicket(final String id, Application application) {
+        if(id == null){
+            return new TicketLiveData(new TicketEntity());
+        }
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference(keyName)
                 .child(id);
@@ -51,12 +56,9 @@ public class TicketRepository {
 
     public void insert(final TicketEntity ticket, OnAsyncEventListener callback,
                        Application application) {
-        DatabaseReference reference = FirebaseDatabase.getInstance()
-                .getReference(keyName);
-        String key = reference.push().getKey();
         FirebaseDatabase.getInstance()
                 .getReference(keyName)
-                .child(key)
+                .child(ticket.getTicketType()+ticket.getDuration()+"day")
                 .setValue(ticket, (databaseError, databaseReference) -> {
                     if (databaseError != null) {
                         callback.onFailure(databaseError.toException());

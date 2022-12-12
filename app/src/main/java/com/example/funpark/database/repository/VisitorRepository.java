@@ -35,9 +35,13 @@ public class VisitorRepository {
     }
 
     public LiveData<VisitorEntity> getVisitor(final String id, Application application) {
+        if(id == null){
+            return new VisitorLiveData(new VisitorEntity());
+        }
         DatabaseReference reference = FirebaseDatabase.getInstance()
                 .getReference(keyName)
                 .child(id);
+
         return new VisitorLiveData(reference);
     }
 

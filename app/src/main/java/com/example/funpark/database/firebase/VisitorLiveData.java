@@ -19,9 +19,15 @@ public class VisitorLiveData extends LiveData<VisitorEntity> {
         reference = ref;
     }
 
+    public VisitorLiveData(VisitorEntity value) {
+        super(value);
+        reference = null;
+    }
+
     @Override
     protected void onActive() {
-        reference.addValueEventListener(listener);
+        if(reference != null)
+            reference.addValueEventListener(listener);
     }
 
 

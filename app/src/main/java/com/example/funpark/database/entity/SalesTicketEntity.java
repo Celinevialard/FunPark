@@ -47,6 +47,7 @@ public class SalesTicketEntity implements IEntityBase {
         this.ticket = ticket;
     }
 
+
     public String getId() {
         return id;
     }
@@ -101,6 +102,38 @@ public class SalesTicketEntity implements IEntityBase {
 
     public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+    public String getTicketTypeEn() {
+        return ticketTypeEn;
+    }
+
+    public String getTicketTypeFr() {
+        return ticketTypeFr;
+    }
+
+    public String getTicketNameEn() {
+        return ticketNameEn;
+    }
+
+    public String getTicketNameFr() {
+        return ticketNameFr;
+    }
+
+    public void setTicketTypeEn(String ticketTypeEn) {
+        this.ticketTypeEn = ticketTypeEn;
+    }
+
+    public void setTicketTypeFr(String ticketTypeFr) {
+        this.ticketTypeFr = ticketTypeFr;
+    }
+
+    public void setTicketNameEn(String ticketNameEn) {
+        this.ticketNameEn = ticketNameEn;
+    }
+
+    public void setTicketNameFr(String ticketNameFr) {
+        this.ticketNameFr = ticketNameFr;
     }
 
     public String getTicketTypeName(Context context) {

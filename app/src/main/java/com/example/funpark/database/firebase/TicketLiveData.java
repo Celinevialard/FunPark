@@ -18,9 +18,15 @@ public class TicketLiveData extends LiveData<TicketEntity> {
         reference = ref;
     }
 
+    public TicketLiveData(TicketEntity value) {
+        super(value);
+        reference = null;
+    }
+
     @Override
     protected void onActive() {
-        reference.addValueEventListener(listener);
+        if(reference!=null)
+            reference.addValueEventListener(listener);
     }
 
 
