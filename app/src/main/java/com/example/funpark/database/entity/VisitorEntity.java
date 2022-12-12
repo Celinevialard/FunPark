@@ -27,8 +27,8 @@ public class VisitorEntity implements IEntityBase {
     @NonNull
     private String id;
 
-    private String lastName;
-    private String firstName;
+    private String lastname;
+    private String firstname;
     private String birthDate;
     private String visitDate;
     private String ticketType;
@@ -39,9 +39,9 @@ public class VisitorEntity implements IEntityBase {
     public VisitorEntity() {
     }
 
-    public VisitorEntity(String lastName, String firstName, String birthDate, String ticketType, String visitDate) {
-        this.lastName = lastName;
-        this.firstName = firstName;
+    public VisitorEntity(String lastname , String firstname, String birthDate, String ticketType, String visitDate) {
+        this.lastname = lastname;
+        this.firstname = firstname;
         this.birthDate = birthDate;
         this.ticketType = ticketType;
         this.visitDate = visitDate;
@@ -55,20 +55,20 @@ public class VisitorEntity implements IEntityBase {
         this.id = id;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getBirthDate() {
@@ -97,7 +97,7 @@ public class VisitorEntity implements IEntityBase {
 
     @Override
     public String toString() {
-        return lastName + " " + firstName + " " + visitDate;
+        return lastname + " " + firstname + " " + visitDate;
     }
 
     @Override
@@ -112,8 +112,8 @@ public class VisitorEntity implements IEntityBase {
         result.put("ticketTypeFr",ticketTypeFr);
         result.put("ticketTypeEn",ticketTypeEn);
         result.put("birthDate",birthDate);
-        result.put("firstname",firstName);
-        result.put("lastname",lastName);
+        result.put("firstname",firstname);
+        result.put("lastname",lastname);
 
         return  result;
     }

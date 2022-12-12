@@ -105,7 +105,7 @@ public class VisitorDetailActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        if (visitor != null && visitor.getFirstName() != null) {
+        if (visitor != null && visitor.getFirstname() != null) {
             menu.add(0, EDIT_VISITOR, Menu.NONE, getString(R.string.action_edit))
                     .setIcon(R.drawable.ic_mode_edit_white_24dp)
                     .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
@@ -231,8 +231,8 @@ public class VisitorDetailActivity extends BaseActivity {
         visitor = new VisitorEntity();
         visitor.setVisitDate(visitDate);
         visitor.setBirthDate(birthDate);
-        visitor.setFirstName(firstName);
-        visitor.setLastName(lastName);
+        visitor.setFirstname(firstName);
+        visitor.setLastname(lastName);
         visitor.setTicketType(ticketType);
 
         viewModel.createVisitor(visitor, new OnAsyncEventListener() {
@@ -253,8 +253,8 @@ public class VisitorDetailActivity extends BaseActivity {
 
         visitor.setVisitDate(visitDate);
         visitor.setBirthDate(birthDate);
-        visitor.setFirstName(firstName);
-        visitor.setLastName(lastName);
+        visitor.setFirstname(firstName);
+        visitor.setLastname(lastName);
         visitor.setTicketType(ticketType);
 
         viewModel.updateVisitor(visitor, new OnAsyncEventListener() {
@@ -294,8 +294,8 @@ public class VisitorDetailActivity extends BaseActivity {
     private void updateContent() {
         spTicketType.setAdapter(adapterTicketType);
         if (visitor != null) {
-            etFirstName.setText(visitor.getFirstName());
-            etLastName.setText(visitor.getLastName());
+            etFirstName.setText(visitor.getFirstname());
+            etLastName.setText(visitor.getLastname());
             birthDate = new DateAdapter(visitor.getBirthDate());
             visitDate = new DateAdapter(visitor.getVisitDate());
 

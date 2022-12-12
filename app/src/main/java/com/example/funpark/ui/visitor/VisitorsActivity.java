@@ -129,7 +129,7 @@ public class VisitorsActivity extends BaseActivity {
         alertDialog.setCancelable(false);
 
         final TextView deleteMessage = view.findViewById(R.id.tv_delete_item);
-        deleteMessage.setText(String.format(getString(R.string.visitor_delete_msg), visitor.getFirstName()));
+        deleteMessage.setText(String.format(getString(R.string.visitor_delete_msg), visitor.getFirstname()));
 
         alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.action_accept), (dialog, which) -> {
             Toast toast = Toast.makeText(this, getString(R.string.visitor_deleted), Toast.LENGTH_LONG);

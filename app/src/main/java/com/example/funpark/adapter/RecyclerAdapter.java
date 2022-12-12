@@ -110,8 +110,8 @@ public class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerAdapter.Vie
                         VisitorEntity newVisitor = (VisitorEntity) data.get(newItemPosition);
                         VisitorEntity oldVisitor = (VisitorEntity) mData.get(newItemPosition);
                         return newVisitor.getId() == oldVisitor.getId()
-                                && Objects.equals(newVisitor.getFirstName(), newVisitor.getFirstName())
-                                && Objects.equals(newVisitor.getLastName(), newVisitor.getLastName())
+                                && Objects.equals(newVisitor.getFirstname(), newVisitor.getFirstname())
+                                && Objects.equals(newVisitor.getLastname(), newVisitor.getLastname())
                                 && Objects.equals(newVisitor.getBirthDate(), newVisitor.getBirthDate())
                                 && Objects.equals(newVisitor.getVisitDate(), newVisitor.getVisitDate());
                     }
