@@ -1,20 +1,14 @@
-# Projet Mobile Dev - FunPark
+# Projet Mobile Dev - FunPark - FIREBASE
 644-1 MobileDev
 
 **Auteurs** : Céline Vialard & Théo Clerc
 
-L'application "FunPark" permet une utilisation de l'applicaiton soit en tant que *admin* soit en tant que *visiteur*. Il existe un affichage des visiteurs avec une possiblité de les modifier et aussi de les supprimer.
-Ces fonctionnalités sont aussi disponibles pour les différents tickets d'entrée au parc d'attraction.
+Dans cette partie du projet, les données de l'applications FunPark ont été placées dans le service Google appelé "Firebase". Ces données sont maintenant stockés en cloud et peuvent être consultées en temps réel par les utilisateurs.
 
-**Fonctionnalités supplémentaires** : 
-- Ajout de logos pour l'application
-- Spinner : Liste déroulante des types de tickets à partir de la base de données;
-- Ajout d'un settings supplémentaire : *Changement de langue* avec un choix *anglais* ou *français* gérée dans la base de données;
-- Ajout d'une partie cliente : Possibilité d'obtenir la liste des billets achetés. De plus, il est possible d'avoir les détails de ces billets avec en supplément un QR code regroupant
-ces données
+**Fonctionnalités supplémentaires - FIREBASE** : 
+- Ajout des notifications
+- Ajout des messages In-App
 
 ### Version du projet:
 
 Lors de l'élaboration de ce projet, l'application a été développée et testée pour une utilisation sur un émulateur "Pixel 3a API 30"
-
-
