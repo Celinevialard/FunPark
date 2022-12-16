@@ -5,7 +5,8 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 
 import com.example.funpark.database.entity.VisitorEntity;
-import com.example.funpark.database.firebase.*;
+import com.example.funpark.database.firebase.VisitorListLiveData;
+import com.example.funpark.database.firebase.VisitorLiveData;
 import com.example.funpark.util.OnAsyncEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 public class VisitorRepository {
 
-    private final String keyName="visitors";
+    private final String keyName = "visitors";
     private static VisitorRepository instance;
 
     private VisitorRepository() {
@@ -35,7 +36,7 @@ public class VisitorRepository {
     }
 
     public LiveData<VisitorEntity> getVisitor(final String id, Application application) {
-        if(id == null){
+        if (id == null) {
             return new VisitorLiveData(new VisitorEntity());
         }
         DatabaseReference reference = FirebaseDatabase.getInstance()

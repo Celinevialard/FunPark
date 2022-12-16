@@ -3,17 +3,11 @@ package com.example.funpark.database.entity;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.Ignore;
-import androidx.room.TypeConverters;
 
 import com.example.funpark.adapter.DateAdapter;
-import com.example.funpark.util.DateConverter;
 import com.example.funpark.util.IEntityBase;
 import com.google.firebase.database.Exclude;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -37,7 +31,6 @@ public class VisitorEntity implements IEntityBase {
     private String ticketTypeEn;
     private String ticketTypeFr;
 
-    @Ignore
     public VisitorEntity() {
         Date currentTime = Calendar.getInstance().getTime();
         DateAdapter currentDate = new DateAdapter(currentTime);
@@ -45,7 +38,7 @@ public class VisitorEntity implements IEntityBase {
         setBirthDate(currentDate.toString());
     }
 
-    public VisitorEntity(String lastname , String firstname, String birthDate, String ticketType, String visitDate) {
+    public VisitorEntity(String lastname, String firstname, String birthDate, String ticketType, String visitDate) {
         this.lastname = lastname;
         this.firstname = firstname;
         this.birthDate = birthDate;
@@ -112,15 +105,15 @@ public class VisitorEntity implements IEntityBase {
     }
 
     @Exclude
-    public Map<String,Object> toMap(){
-        HashMap<String,Object> result = new HashMap<>();
-        result.put("ticket",ticketType);
-        result.put("ticketTypeFr",ticketTypeFr);
-        result.put("ticketTypeEn",ticketTypeEn);
-        result.put("birthDate",birthDate);
-        result.put("firstname",firstname);
-        result.put("lastname",lastname);
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("ticket", ticketType);
+        result.put("ticketTypeFr", ticketTypeFr);
+        result.put("ticketTypeEn", ticketTypeEn);
+        result.put("birthDate", birthDate);
+        result.put("firstname", firstname);
+        result.put("lastname", lastname);
 
-        return  result;
+        return result;
     }
 }

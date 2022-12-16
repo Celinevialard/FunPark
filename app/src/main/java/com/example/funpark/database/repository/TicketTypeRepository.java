@@ -4,7 +4,6 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.funpark.BaseApp;
 import com.example.funpark.database.entity.TicketTypeEntity;
 import com.example.funpark.database.firebase.TicketTypeListLiveData;
 import com.google.firebase.database.DatabaseReference;

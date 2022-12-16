@@ -2,10 +2,6 @@ package com.example.funpark.database.entity;
 
 import android.content.Context;
 
-import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-
 import com.example.funpark.util.IEntityBase;
 import com.example.funpark.util.PreferenceHelper;
 import com.google.firebase.database.Exclude;
@@ -70,11 +66,11 @@ public class TicketTypeEntity implements IEntityBase {
     }
 
     @Exclude
-    public Map<String,Object> toMap(){
-        HashMap<String,Object> result = new HashMap<>();
-        result.put("nameEn",nameEn);
-        result.put("nameFr",nameFr);
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("nameEn", nameEn);
+        result.put("nameFr", nameFr);
 
-        return  result;
+        return result;
     }
 }
