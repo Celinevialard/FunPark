@@ -3,17 +3,11 @@ package com.example.funpark.database.entity;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.Ignore;
-import androidx.room.TypeConverters;
 
-import com.example.funpark.util.DateConverter;
 import com.example.funpark.util.IEntityBase;
 import com.example.funpark.util.PreferenceHelper;
 import com.google.firebase.database.Exclude;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,7 +30,6 @@ public class SalesTicketEntity implements IEntityBase {
     private String ticketNameEn;
     private String ticketNameFr;
 
-    @Ignore
     public SalesTicketEntity() {
     }
 
