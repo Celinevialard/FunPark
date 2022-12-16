@@ -30,6 +30,8 @@ public class VisitorListLiveData extends LiveData<List<VisitorEntity>> {
     private class MyValueEventListener implements ValueEventListener {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            //TODO Contrôler datasnapchot si null (le contenu)
+
             setValue(toVisitors(dataSnapshot));
         }
 
